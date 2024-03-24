@@ -21,10 +21,11 @@ html {
 html body {
   overflow: hidden;
   height: 100%;
-  background: linear-gradient(20deg, #22cc72, #55ffa5);
+  background: linear-gradient(20deg, var(--font-color-dark), var(--font-color-light));
 }
 html body #colors-change {
   z-index: 1;
+  opacity: 70%;
   text-align: center;
   transition: all 0.3s;
   cursor: pointer;
@@ -41,12 +42,14 @@ html body #colors-change {
   font-size: 25px;
   font-weight: bold;
 }
-html body #colors-change:hover {
+html body #colors-change:hover, html body #colors-change:focus {
   background-color: var(--color-green-light);
   text-shadow: -8px -9px 49px var(--color-green-light2);
   color: var(--font-color-light2);
 }
 html body #colors-change-options {
+  display: none;
+  filter: brightness(100%) invert(0%) hue-rotate(0%) sepia(0%);
   font-size: 25px;
   position: absolute;
   z-index: 2;
@@ -61,6 +64,7 @@ html body #colors-change-options label {
   font-style: normal;
   display: block;
   margin: 5px;
+  cursor: pointer;
 }
 html body #colors-change-options #close-colors {
   color: var(--font-color-dark2);
@@ -69,6 +73,7 @@ html body #colors-change-options #close-colors {
   width: 10px;
   margin-left: px;
   float: right;
+  cursor: pointer;
 }
 html body #container {
   display: flex;
@@ -103,7 +108,7 @@ html body #container header#main-site-header h1#logo div#logo-name {
   font-optical-sizing: auto;
   font-style: normal;
 }
-html body #container header#main-site-header h1#logo div#logo-name:hover {
+html body #container header#main-site-header h1#logo div#logo-name:hover, html body #container header#main-site-header h1#logo div#logo-name:focus {
   cursor: pointer;
   text-shadow: -8px -9px 49px var(--color-green-light2);
   transform: rotate(-2deg);
@@ -120,7 +125,7 @@ html body #container header#main-site-header h1#logo div#logo-name::before {
   left: calc(50% - 200px);
   transition: all 0.3s linear;
 }
-html body #container header#main-site-header h1#logo div#logo-name:hover::before {
+html body #container header#main-site-header h1#logo div#logo-name:hover::before, html body #container header#main-site-header h1#logo div#logo-name:focus::before {
   width: 400px;
 }
 html body #container #next-block {
@@ -145,6 +150,7 @@ html body #container #next-block div#left nav ul {
   list-style-type: none;
 }
 html body #container #next-block div#left nav ul li {
+  cursor: pointer;
   border-top: 2px solid var(--font-color-dark2);
   display: flex;
   align-items: center;
@@ -174,6 +180,9 @@ html body #container footer {
 }
 
 @media screen and (max-width: 1100px) {
+  html body #container header#main-site-header h1#logo span#logo-description {
+    display: none;
+  }
   html body #container #next-block div#left nav ul li div.arrow-menu {
     display: none;
   }

@@ -8,3 +8,9 @@ window.addEventListener("resize", function () {
 window.addEventListener("load", function () {
   main.style.width = container.offsetWidth - nav.offsetWidth + "px";
 });
+
+let inputs = document.querySelectorAll("input[type='number']");
+inputs.forEach((input) => {
+  input.value = 0;
+});
+document.getElementById("brightness").value = 100;

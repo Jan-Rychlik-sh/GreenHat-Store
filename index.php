@@ -7,40 +7,42 @@
     <title>GreenHat-Store</title>
     <link rel="stylesheet" href="dist/style.css">
     <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
-    <script async defer src="fix-width.js"></script>
+    <script async defer src="fix.js"></script>
     <script async defer src="arrow-menu.js"></script>
     <script async defer src="colors-user-change.js"></script>
 </head>
 
-<body>
-    <div id="colors-change">Kolory</div>
+
+<body id="body">
     <div id="colors-change-options">
         <span>Zmieniaj kolory</span>
         <div id="close-colors">X</div>
         <div style="clear: both;"></div>
         <label>
-            <caption>hueRotate:</caption>
-            <input type="number" name="hueRotate" id="hueRotate">
+            <span class="captions">hue-rotate</span>
+            <input type="number" value="0" name="hueRotate" id="hueRotate">
         </label><br>
         <label>
-            <caption>invert:</caption>
-            <input type="number" name="invert" id="invert">
+            <span class="captions">invert</span>
+            <input type="number" value="0" name="invert" id="invert">
         </label><br>
         <label>
-            <caption>sepia:</caption>
-            <input type="number" name="sepia" id="sepia">
+            <span class="captions">sepia</span>
+            <input type="number" value="0" name="sepia" id="sepia">
         </label><br>
         <label>
-            <caption>brightness:</caption>
-            <input type="number" name="brightness" id="brightness">
+            <span class="captions">brightness</span>
+            <input type="number" value="100" name="brightness" id="brightness">
         </label>
     </div>
+    <div id="colors-change">Kolory</div>
     <div id="container">
         <header id="main-site-header">
             <h1 id="logo">
                 <div id="logo-name">
                     GreenHat Store
-                </div> Witaj na stronie sklepu z telefonami i komputerami, jednym z większych w Polsce.
+                </div>
+                <span id="logo-description">Witaj na stronie sklepu z telefonami i komputerami, jednym z większych w Polsce.</span>
             </h1>
         </header>
         <div id="next-block">
