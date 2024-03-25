@@ -90,7 +90,7 @@
             </div>
             <main id="main-content"></main>
         </div>
-        <footer></footer>
+        <footer>&u0142; &aacute;</footer>
     </div>
     <?php
     $connect = new mysqli("localhost", "root", "", "gh_store");
@@ -98,8 +98,10 @@
 
     // Przetwarzanie wyników zapytania
     $switchSrc = [];
+    $switchDescription = [];
     while ($row = $rezultat1->fetch_assoc()) {
         $switchSrc[] = $row['img'];
+        $switchDescription[] = $row['description'];
     }
     ?>
 
@@ -137,46 +139,76 @@
         function showMenu(objectName, elementIndex, eventListener) {
             main2.innerHTML = "";
             let switchSrc = [];
+            let switchDesc = [];
             // Wykorzystanie danych w kodzie JavaScript
             let switchImages = <?php echo json_encode($switchSrc); ?>;
+            let switchDescription = <?php echo json_encode($switchDescription); ?>;
             console.log(switchImages);
             console.log(objectName);
             switch (objectName) {
                 case "Smartphones":
-                    for (let i = 0; i < switchImages.length; i++)
-                        if (switchImages[i].includes("Smartphone1")) switchSrc.push(switchImages[i]);
+                    for (let i = 0; i < switchImages.length; i++) {
+                        if (switchImages[i].includes("Smartphone1")) {
+                            switchSrc.push(switchImages[i]);
+                            switchDesc.push(switchDescription[i])
+                        }
+                    }
                     break;
                 case "Phones":
                     for (let i = 0; i < switchImages.length; i++)
-                        if (switchImages[i].includes("Phones2")) switchSrc.push(switchImages[i]);
+                        if (switchImages[i].includes("Phones2")) {
+                            switchSrc.push(switchImages[i]);
+                            switchDesc.push(switchDescription[i])
+                        }
                     break;
                 case "PhoneCharging":
                     for (let i = 0; i < switchImages.length; i++)
-                        if (switchImages[i].includes("PhoneCharging3")) switchSrc.push(switchImages[i]);
+                        if (switchImages[i].includes("PhoneCharging3")) {
+                            switchSrc.push(switchImages[i]);
+                            switchDesc.push(switchDescription[i])
+                        }
                     break;
                 case "SmartphoneAccessories":
                     for (let i = 0; i < switchImages.length; i++)
-                        if (switchImages[i].includes("SmartphoneAccesories4")) switchSrc.push(switchImages[i]);
+                        if (switchImages[i].includes("SmartphoneAccesories4")) {
+                            switchSrc.push(switchImages[i]);
+                            switchDesc.push(switchDescription[i])
+                        }
                     break;
                 case "Laptops":
                     for (let i = 0; i < switchImages.length; i++)
-                        if (switchImages[i].includes("LaptopAndAccessories5")) switchSrc.push(switchImages[i]);
+                        if (switchImages[i].includes("LaptopAndAccessories5")) {
+                            switchSrc.push(switchImages[i]);
+                            switchDesc.push(switchDescription[i])
+                        }
                     break;
                 case "HeadphonesAndSpeakers":
                     for (let i = 0; i < switchImages.length; i++)
-                        if (switchImages[i].includes("HeadPhonesAndSpeakers6")) switchSrc.push(switchImages[i]);
+                        if (switchImages[i].includes("HeadPhonesAndSpeakers6")) {
+                            switchSrc.push(switchImages[i]);
+                            switchDesc.push(switchDescription[i])
+                        }
                     break;
                 case "TabletsAndEbooks":
                     for (let i = 0; i < switchImages.length; i++)
-                        if (switchImages[i].includes("TabletsAndEbooks7")) switchSrc.push(switchImages[i]);
+                        if (switchImages[i].includes("TabletsAndEbooks7")) {
+                            switchSrc.push(switchImages[i]);
+                            switchDesc.push(switchDescription[i])
+                        }
                     break;
                 case "ComputersAndComponents":
                     for (let i = 0; i < switchImages.length; i++)
-                        if (switchImages[i].includes("ComputersAndComponents8")) switchSrc.push(switchImages[i]);
+                        if (switchImages[i].includes("ComputersAndComponents8")) {
+                            switchSrc.push(switchImages[i]);
+                            switchDesc.push(switchDescription[i])
+                        }
                     break;
                 case "ComputerAccessories":
                     for (let i = 0; i < switchImages.length; i++)
-                        if (switchImages[i].includes("ComputerAccessories9")) switchSrc.push(switchImages[i]);
+                        if (switchImages[i].includes("ComputerAccessories9")) {
+                            switchSrc.push(switchImages[i]);
+                            switchDesc.push(switchDescription[i])
+                        }
                     break;
                 case "AboutUs":
                     switchSrc = "img/arrow-menu-images/Smartphone/1TB.webp";
@@ -194,7 +226,7 @@
                 image.src = switchSrc[i];
                 image.width = "100";
                 let figcaption = document.createElement("figcaption");
-                figcaption.innerHTML = "";
+                figcaption.innerHTML = switchDesc[i];
                 main2.appendChild(arrowMenuElement);
                 arrowMenuElement.appendChild(aHref);
                 aHref.appendChild(figure);
