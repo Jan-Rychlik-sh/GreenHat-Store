@@ -1,0 +1,27 @@
+// Smartfony
+// Wszystkie smartfony - Długi okres wsparcia - Dobry aparat - Dobry procesor - Dużo pamięci wewnętrznej - Dużo RAM-u - Stare flagowce i średniaki z nowym Androidem +4 lata wsparcia (od nas)
+
+// Telefony
+// Telefon komórkowy - Telefon bezprzewodowy - Telefon stacjonarny - Telefon przewodowy
+
+// Ładowanie telefonu
+// Kable do telefonów - Ładowarki do telefonu - Ładowarki indukcyjne - Powerbanki - Przejściówki do telefonów
+
+// Akcesoria do smartfonów
+// Etui na telefony - Szkła hartowane - Karty pamięci SD - Folie ochronne - Uchwyty do roweru - Uchwyty z przyssawką
+
+//Laptopy i Akcesoria
+// Wszystkie laptopy - Laptopy gamingowe (do grafiki) - Macbooki - Chromebooki - Laptop 2w1 - Torba na laptop - Bateria do laptopa- Ładowarka do laptopa
+
+//Słuchawki i Głośniki
+// Słuchawki nauszne - Słuchawki Kostne - Słuchawki Douszne - Direct pitch - Głośniki
+
+//Tablety i e-booki
+// Wszystkie tablety i e-booki - iPad - Czytniki e-Booków - Etui na Tablet - Rysik do tabletu - Szkło ochronne - Folia Ochronna
+
+//Komputery i podzespoły
+// Komputery PC - Komputery Gamingowe - All in One - Karty Graficzne - Zasilacze - Procesory - RAM - Płyty główne - Obudowy do PC - Chłodzenie - Napęd optyczny - Dyski
+
+//Niezbędne dodatki do komputera
+// Karty sieciowe - Klawiatury - Myszki - Monitory - Pendrive - Karty dźwiękowe
+

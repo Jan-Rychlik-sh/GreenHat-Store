@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="dist/style.css">
     <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
     <script async defer src="fix.js"></script>
-    <script async defer src="arrow-menu.js"></script>
     <script async defer src="colors-user-change.js"></script>
 </head>
 
@@ -49,45 +48,41 @@
             <div id="left">
                 <nav id="nav">
                     <ul>
-                        <li>
+                        <li id="o1">
                             <h3>Smartfony</h3>
                             <div class="arrow-menu" id="am1">></div>
                         </li>
-                        <li>
+                        <li id="o2">
                             <h3>Telefony</h3>
                             <div class="arrow-menu" id="am2">></div>
                         </li>
-                        <li>
+                        <li id="o3">
                             <h3>Ładowanie telefonu</h3>
                             <div class="arrow-menu" id="am3">></div>
                         </li>
-                        <li>
+                        <li id="o4">
                             <h3>Akcesoria do smartfonów</h3>
                             <div class="arrow-menu" id="am4">></div>
                         </li>
-                        <li>
-                            <h3>Laptopy</h3>
+                        <li id="o5">
+                            <h3>Laptopy i Akcesoria</h3>
                             <div class="arrow-menu" id="am5">></div>
                         </li>
-                        <li>
-                            <h3>Podzespoły do komputerów</h3>
+                        <li id="o6">
+                            <h3>Słuchawki i głośniki komputerowe</h3>
                             <div class="arrow-menu" id="am6">></div>
                         </li>
-                        <li>
-                            <h3>Słuchawki</h3>
+                        <li id="o7">
+                            <h3>Tablety i E-booki</h3>
                             <div class="arrow-menu" id="am7">></div>
                         </li>
-                        <li>
-                            <h3>Głośniki</h3>
+                        <li id="o8">
+                            <h3>Komputery i Podzespoły</h3>
                             <div class="arrow-menu" id="am8">></div>
                         </li>
-                        <li>
-                            <h3>Komputery</h3>
+                        <li id="o9">
+                            <h3>Dodatki do komputera</h3>
                             <div class="arrow-menu" id="am9">></div>
-                        </li>
-                        <li>
-                            <h3>O nas</h3>
-                            <div class="arrow-menu" id="am10">></div>
                         </li>
                     </ul>
                 </nav>
@@ -97,6 +92,118 @@
         </div>
         <footer></footer>
     </div>
+    <?php
+    $connect = new mysqli("localhost", "root", "", "gh_store");
+    $rezultat1 = $connect->query("SELECT description, img FROM main_site_arrow_menu_options_childs");
+
+    // Przetwarzanie wyników zapytania
+    $switchSrc = [];
+    while ($row = $rezultat1->fetch_assoc()) {
+        $switchSrc[] = $row['img'];
+    }
+    ?>
+
+    <script>
+        let functionsName = [
+            "Smartphones",
+            "Phones",
+            "PhoneCharging",
+            "SmartphoneAccessories",
+            "Laptops",
+            "HeadphonesAndSpeakers",
+            "TabletsAndEbooks",
+            "ComputersAndComponents",
+            "ComputerAccessories",
+            "AboutUs",
+        ];
+
+        let main2 = document.querySelector("main");
+        let lis = [];
+        for (let i = 1; i <= functionsName.length - 1; i++) {
+            lis.push(document.querySelector(`li#o${i}`));
+        }
+        console.log(lis);
+
+        function setEventListeners() {
+            lis.forEach((li, i) => {
+                function n() {
+                    showMenu(functionsName[i], i + 1, n);
+                }
+                li.addEventListener("click", n);
+            });
+        }
+        setEventListeners();
+
+        function showMenu(objectName, elementIndex, eventListener) {
+            main2.innerHTML = "";
+            let switchSrc = [];
+            // Wykorzystanie danych w kodzie JavaScript
+            let switchImages = <?php echo json_encode($switchSrc); ?>;
+            console.log(switchImages);
+            console.log(objectName);
+            switch (objectName) {
+                case "Smartphones":
+                    for (let i = 0; i < switchImages.length; i++)
+                        if (switchImages[i].includes("Smartphone1")) switchSrc.push(switchImages[i]);
+                    break;
+                case "Phones":
+                    for (let i = 0; i < switchImages.length; i++)
+                        if (switchImages[i].includes("Phones2")) switchSrc.push(switchImages[i]);
+                    break;
+                case "PhoneCharging":
+                    for (let i = 0; i < switchImages.length; i++)
+                        if (switchImages[i].includes("PhoneCharging3")) switchSrc.push(switchImages[i]);
+                    break;
+                case "SmartphoneAccessories":
+                    for (let i = 0; i < switchImages.length; i++)
+                        if (switchImages[i].includes("SmartphoneAccesories4")) switchSrc.push(switchImages[i]);
+                    break;
+                case "Laptops":
+                    for (let i = 0; i < switchImages.length; i++)
+                        if (switchImages[i].includes("LaptopAndAccessories5")) switchSrc.push(switchImages[i]);
+                    break;
+                case "HeadphonesAndSpeakers":
+                    for (let i = 0; i < switchImages.length; i++)
+                        if (switchImages[i].includes("HeadPhonesAndSpeakers6")) switchSrc.push(switchImages[i]);
+                    break;
+                case "TabletsAndEbooks":
+                    for (let i = 0; i < switchImages.length; i++)
+                        if (switchImages[i].includes("TabletsAndEbooks7")) switchSrc.push(switchImages[i]);
+                    break;
+                case "ComputersAndComponents":
+                    for (let i = 0; i < switchImages.length; i++)
+                        if (switchImages[i].includes("ComputersAndComponents8")) switchSrc.push(switchImages[i]);
+                    break;
+                case "ComputerAccessories":
+                    for (let i = 0; i < switchImages.length; i++)
+                        if (switchImages[i].includes("ComputerAccessories9")) switchSrc.push(switchImages[i]);
+                    break;
+                case "AboutUs":
+                    switchSrc = "img/arrow-menu-images/Smartphone/1TB.webp";
+                    break;
+            }
+            let j = 3;
+            let thisElement = document.querySelector(`#o${elementIndex}`);
+            for (let i = 0; i < switchSrc.length; i++) {
+                let arrowMenuElement = document.createElement("div");
+                arrowMenuElement.classList.add("arrowMenuElement");
+                let aHref = document.createElement("a");
+                aHref.id = "redirector";
+                let figure = document.createElement("figure");
+                let image = document.createElement("img");
+                image.src = switchSrc[i];
+                image.width = "100";
+                let figcaption = document.createElement("figcaption");
+                figcaption.innerHTML = "";
+                main2.appendChild(arrowMenuElement);
+                arrowMenuElement.appendChild(aHref);
+                aHref.appendChild(figure);
+                figure.appendChild(image);
+                figure.appendChild(figcaption);
+            }
+        }
+    </script>
+
 </body>
 
 </html>
