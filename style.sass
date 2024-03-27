@@ -173,10 +173,13 @@ html
                         margin: 5px
                         background-color: white
                         border: 3px solid var(--font-color-dark)
+                        transition: all .3s
                         a
                             display: block
                             width: 100%
                             height: 100%
+                            color: var(--font-color-dark)
+                            text-decoration: none
                             figure
                                 height: 100%
                                 width: 100%
@@ -190,6 +193,8 @@ html
                                     width: auto
                                 figcaption
                                     width: 100%
+                    .arrowMenuElement:hover
+                        filter: brightness(70%) sepia(30%)
             footer
                 width: 100%
                 height: 10%

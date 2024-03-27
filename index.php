@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -215,18 +219,26 @@
                     break;
             }
             let j = 3;
+            console.log(switchDesc);
             let thisElement = document.querySelector(`#o${elementIndex}`);
             for (let i = 0; i < switchSrc.length; i++) {
                 let arrowMenuElement = document.createElement("div");
                 arrowMenuElement.classList.add("arrowMenuElement");
+
                 let aHref = document.createElement("a");
                 aHref.id = "redirector";
+
+                // Ustawienie adresu URL z parametrami objectName i filter
+                aHref.href = `redirect.php?objectName=${objectName}&filter=${switchDesc[i]}`;
+
                 let figure = document.createElement("figure");
                 let image = document.createElement("img");
                 image.src = switchSrc[i];
                 image.width = "100";
+
                 let figcaption = document.createElement("figcaption");
                 figcaption.innerHTML = switchDesc[i];
+
                 main2.appendChild(arrowMenuElement);
                 arrowMenuElement.appendChild(aHref);
                 aHref.appendChild(figure);
