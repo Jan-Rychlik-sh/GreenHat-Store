@@ -3,14 +3,14 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreenHat-Store</title>
     <link rel="stylesheet" href="dist/style.css">
-    <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <script async defer src="fix.js"></script>
     <script async defer src="colors-user-change.js"></script>
 </head>
@@ -98,12 +98,12 @@ session_start();
     </div>
     <?php
     $connect = new mysqli("localhost", "root", "", "gh_store");
-    $rezultat1 = $connect->query("SELECT description, img FROM main_site_arrow_menu_options_childs");
+    $rezult1 = $connect->query("SELECT description, img FROM main_site_arrow_menu_options_childs");
 
     // Przetwarzanie wyników zapytania
     $switchSrc = [];
     $switchDescription = [];
-    while ($row = $rezultat1->fetch_assoc()) {
+    while ($row = $rezult1->fetch_assoc()) {
         $switchSrc[] = $row['img'];
         $switchDescription[] = $row['description'];
     }
@@ -219,15 +219,16 @@ session_start();
                     break;
             }
             let j = 3;
+
             console.log(switchDesc);
             let thisElement = document.querySelector(`#o${elementIndex}`);
             for (let i = 0; i < switchSrc.length; i++) {
                 let arrowMenuElement = document.createElement("div");
                 arrowMenuElement.classList.add("arrowMenuElement");
 
+
                 let aHref = document.createElement("a");
                 aHref.id = "redirector";
-
                 // Ustawienie adresu URL z parametrami objectName i filter
                 aHref.href = `redirect.php?objectName=${objectName}&filter=${switchDesc[i]}`;
 

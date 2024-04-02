@@ -96,6 +96,11 @@ html body #container header#main-site-header {
   color: var(--font-color-light);
   width: 100%;
 }
+html body #container header#main-site-header h1#logo a {
+  text-decoration: none;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 html body #container header#main-site-header h1#logo div#logo-name {
   height: 100px;
   position: relative;
@@ -144,6 +149,79 @@ html body #container #next-block div#left nav {
   overflow-y: scroll;
   height: 100%;
   width: 100%;
+}
+html body #container #next-block div#left nav .sort {
+  text-transform: uppercase;
+}
+html body #container #next-block div#left nav .sort span {
+  display: block;
+  font-size: 20px;
+  color: var(--font-color-dark);
+  font-weight: bold;
+  padding: 5px;
+}
+html body #container #next-block div#left nav .sort select {
+  background-color: var(--font-color-dark);
+  padding: 5px;
+  font-size: 20px;
+  color: var(--font-color-light2);
+  margin: 5px 5px 20px 5px;
+  border-radius: 5px;
+  border: 5px solid var(--color-green-light);
+}
+html body #container #next-block div#left nav .sort select option:hover {
+  filter: invert(1);
+  cursor: pointer;
+}
+html body #container #next-block div#left nav details {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px;
+  color: var(--font-color-dark2);
+}
+html body #container #next-block div#left nav details summary {
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--font-color-dark);
+}
+html body #container #next-block div#left nav details label.optionFilter {
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+html body #container #next-block div#left nav details label.optionFilter .optionCheckbox {
+  margin-left: 5px;
+  accent-color: var(--color-green-light);
+}
+html body #container #next-block div#left nav details hr {
+  background-color: var(--font-color-light);
+  border-top: 3px dashed var(--font-color-dark);
+}
+html body #container #next-block div#left nav button {
+  position: sticky;
+  bottom: 0px;
+  width: 100%;
+  padding: 10px;
+  font-size: 30px;
+  border-radius: 0px;
+  cursor: pointer;
+  border: none;
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
+  background-color: var(--font-color-dark2);
+  color: var(--color-green-light2);
+  transition: 0.4s all;
+  margin-top: 50px;
+}
+html body #container #next-block div#left nav button:hover {
+  color: var(--font-color-dark2);
+  background-color: var(--color-green-light2);
 }
 html body #container #next-block div#left nav ul {
   height: 100%;
