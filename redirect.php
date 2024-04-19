@@ -14,7 +14,7 @@ $filtersByCategory = [
             "values" => ["android 23", "android 22", "android 21", "android 20", "android 19", "android 18", "ios 22", "ios 21", "ios 20"],
         ],
         "Dobry aparat" => [
-            "filter" => "rozdzielczosc_aparatu_tylu__mpx_",
+            "filter" => "Rozdzielczość nagrywanego wideo tył",
             "values" => ['4K@30fps', '4K@60fps', '8K@24fps', '8K@30fps', 'powyżej 8K@30fps'],
         ],
         "Dobry procesor" => [
@@ -53,12 +53,9 @@ $filtersByCategory = [
     "AboutUs" => [],
 ];
 
-// Przykład użycia:
 $_SESSION["category"] = $_GET["objectName"];
 $buforCategory = $_SESSION["category"];
 $filterName = $_GET["filter"];
-echo $_SESSION["category"];
-echo $filterName;
 
 
 if (isset($filtersByCategory[$_SESSION["category"]][$filterName])) {
@@ -86,6 +83,7 @@ if (isset($filtersByCategory[$_SESSION["category"]][$filterName])) {
     var_dump($filter);
     echo "<br><br>";
     var_dump($filterData);
+    $_SESSION['filter'] = $filter;
     $_SESSION['category'] = strtolower($_SESSION['category']);
 
     $_SESSION['sql'] = "SELECT * FROM " . strtolower($_SESSION["category"]);

@@ -150,9 +150,6 @@ html body #container #next-block div#left nav {
   height: 100%;
   width: 100%;
 }
-html body #container #next-block div#left nav .sort {
-  text-transform: uppercase;
-}
 html body #container #next-block div#left nav .sort span {
   display: block;
   font-size: 20px;
@@ -201,7 +198,7 @@ html body #container #next-block div#left nav details hr {
   background-color: var(--font-color-light);
   border-top: 3px dashed var(--font-color-dark);
 }
-html body #container #next-block div#left nav button {
+html body #container #next-block div#left nav button.filter_button {
   position: sticky;
   bottom: 0px;
   width: 100%;
@@ -218,9 +215,39 @@ html body #container #next-block div#left nav button {
   color: var(--color-green-light2);
   transition: 0.4s all;
   margin-top: 50px;
+  animation: filter_animation 1s linear 0s infinite;
+  animation-play-state: running;
+  border: 10px solid var(--color-green-light2);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+@keyframes filter_animation {
+  0% {
+    filter: brightness(100%);
+  }
+  16.6666666667% {
+    filter: brightness(83.3333333335%);
+  }
+  33.3333333334% {
+    filter: brightness(66.6666666668%);
+  }
+  50% {
+    filter: brightness(50%);
+  }
+  66.6666666668% {
+    filter: brightness(66.6666666668%);
+  }
+  83.3333333335% {
+    filter: brightness(83.3333333335%);
+  }
+  100% {
+    filter: brightness(100%);
+  }
 }
 html body #container #next-block div#left nav button:hover {
+  filter: none;
   color: var(--font-color-dark2);
+  animation-play-state: paused;
   background-color: var(--color-green-light2);
 }
 html body #container #next-block div#left nav ul {

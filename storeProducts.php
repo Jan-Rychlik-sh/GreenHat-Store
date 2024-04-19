@@ -73,7 +73,11 @@ session_start();
                             $rezult3 = $connect->query("SELECT * FROM options WHERE `type`='" . $_SESSION["category"] . "' AND forWhichFilter='" . $row["name"] . "'");
 
                             while ($row2 = $rezult3->fetch_assoc()) {
-                                echo "<label class='optionFilter'>" . $row2["name"] . "<input type='checkbox' class='optionCheckbox'></label><hr>";
+                                if (str_contains($_SESSION['sql'], "'" . $row2["name"] . "'")) {
+                                    echo "<label class='optionFilter'>" . $row2["name"] . "<input type='checkbox' class='optionCheckbox' checked></label><hr>";
+                                } else {
+                                    echo "<label class='optionFilter'>" . $row2["name"] . "<input type='checkbox' class='optionCheckbox' ></label><hr>";
+                                }
                             }
 
                             echo "</details>";
@@ -81,7 +85,7 @@ session_start();
                     }
 
                     ?>
-                    <button>FILTRUJ</button>
+                    <button class="filter_button">POKAŻ</button>
                 </nav>
                 <form method="post"></form>
             </div>

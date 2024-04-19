@@ -1,14 +1,18 @@
 Najpierw trzeba w JS utworzyć hrefy - zrobione
 
-Trzeba jakoś poinformować PHP która opcja została naciśnięta, więc w pliku redirect.php ustawiamy sesje z informacją które filtry mają być uaktywnione i przekierujemy usera do odpowiedniej podstrony - do zrobienia
+Trzeba jakoś poinformować PHP która opcja została naciśnięta, więc w pliku redirect.php ustawiamy sesje z informacją które filtry mają być uaktywnione i przekierujemy usera do odpowiedniej podstrony - zrobione
 
 Trzeba zrobić bazę danych z filtrami (id, name, forWhichProduct) i dostępnymi dla nich opcjami (id, forWhichFilter, name) - zrobione
 
-Następnie przekierujemy usera do odpowiedniej podstrony z już włączonymi filtrami (jeżeli wymaga ich dana opcja) zawartymi w sesjach utworzonych w pliku redirect.php - do zrobienia
+Następnie przekierujemy usera do odpowiedniej podstrony z już włączonymi filtrami (jeżeli wymaga ich dana opcja) zawartymi w sesjach utworzonych w pliku redirect.php - zrobione
 
-Na podstronie w menu będzie się znajdował sorter z opcjami: cena - od najniższej, cena - od najwyższej, najwięcej opinii, najlepsze opinie, od najnowszego, od najstarszego - do zrobienia
+Na podstronie w menu będzie się znajdował sorter z opcjami: cena - od najniższej, cena - od najwyższej, najwięcej opinii, najlepsze opinie, od najnowszego, od najstarszego - zrobione
 
-Na podstronie w menu poniżej sortera znajdą się filtry które można będzie rozwinąć i zaznaczyć je sobie (być może filtry będą się znajdować w dalszej wersji w BD) na końcu będzie przycisk z napisem filtruj, który zatwierdzi podane filtry. Po kliknięciu w ten guzik strona się odświeży a w mainie pokażą się tylko te produkty, które spełniają wymagania. - do zrobienia
+Trzeba powkładać więcej smartfonów do BD z oszacowanymi opcjami, z dokładnymi opcjami i zrobić folder ze zdjęciami tych smartfonów - do zrobienia
+
+Na końcu będzie przycisk z napisem filtruj, który zatwierdzi podane filtry. Po kliknięciu w ten guzik strona się odświeży a w mainie pokażą się tylko te produkty, które spełniają wymagania. - do zrobienia (To będzie najtrudniejsze zadanie)
 
 Będzie można wejść w dany produkt a wtedy ma się pokazać podstrona z informacjami o produkcie i możliwością zakupu. - do zrobienia
+
+Będzie można pisać opinie na temat danego produktu - do zrobienia
 
