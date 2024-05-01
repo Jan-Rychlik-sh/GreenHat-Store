@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,13 +81,49 @@
                 htmlentities($_POST['Wymienna_Bateria'], ENT_QUOTES, "UTF-8") . "', '" .
                 htmlentities($_POST['cena'], ENT_QUOTES, "UTF-8")
                 . "');";
-            // $connect = new mysqli("localhost", "root", "", "gh_store");
-            // if ($connect->query($sql)) {
-            //     echo "Udało się";
-            //     header("Location: smartphones_parametersDB.php");
-            // } else {
-            //     echo "Błąd";
-            // }
+            $_SESSION['nazwa'] = $_POST["nazwa"];
+            $_SESSION['Ocena_Użytkowników'] = $_POST["Ocena_Użytkowników"];
+            $_SESSION['Rok_Premiery'] = $_POST["Rok_Premiery"];
+            $_SESSION['Marka'] = $_POST['Marka'];
+            $_SESSION['Przekątna_ekranu'] = $_POST['Przekątna_ekranu'];
+            $_SESSION['Zagięty_ekran'] = $_POST['Zagięty_ekran'];
+            $_SESSION['Rozdzielczość_Ekranu'] = $_POST['Rozdzielczość_Ekranu'];
+            $_SESSION['Odświeżanie_Ekranu_Hz'] = $_POST['Odświeżanie_Ekranu_Hz'];
+            $_SESSION['Technologia_ekranu'] = $_POST['Technologia_ekranu'];
+            $_SESSION['Składany_ekran'] = $_POST['Składany_ekran'];
+            $_SESSION['System_Operacyjny'] = $_POST['System_Operacyjny'];
+            $_SESSION['Ostateczny_możliwy_system_operacyjny'] = $_POST['Ostateczny_możliwy_system_operacyjny'];
+            $_SESSION['Wodoodporność'] = $_POST['Wodoodporność'];
+            $_SESSION['Dual_sim'] = $_POST['Dual_sim'];
+            $_SESSION['Jack_na_słuchawki_przewodowe'] = $_POST['Jack_na_słuchawki_przewodowe'];
+            $_SESSION['Slot_na_kartę_SD'] = $_POST['Slot_na_kartę_SD'];
+            $_SESSION['Typ_złącza_USB'] = $_POST['Typ_złącza_USB'];
+            $_SESSION['5G'] = $_POST['5G'];
+            $_SESSION['NFC'] = $_POST["NFC"];
+            $_SESSION['Standard_BlueTooth'] = $_POST['Standard_BlueTooth'];
+            $_SESSION['Bardzo_Szybki_Internet'] = $_POST['Bardzo_Szybki_Internet'];
+            $_SESSION['rozdzielczość_aparatu_tylnego_Mpx'] = $_POST['rozdzielczość_aparatu_tylnego_Mpx'];
+            $_SESSION['rozdzielczość_aparatu_przedniego_Mpx'] = $_POST['rozdzielczość_aparatu_przedniego_Mpx'];
+            $_SESSION['Rozdzielczość_nagrywanego_wideo_tył'] = $_POST['Rozdzielczość_nagrywanego_wideo_tył'];
+            $_SESSION['Rozdzielczość_nagrywanego_wideo_przód'] = $_POST['Rozdzielczość_nagrywanego_wideo_przód'];
+            $_SESSION['Taktowanie_procesora'] = $_POST['Taktowanie_procesora'];
+            $_SESSION['Marka_procesora'] = $_POST['Marka_procesora'];
+            $_SESSION['Prędkość_Pamięci_RAM'] = $_POST['Prędkość_Pamięci_RAM'];
+            $_SESSION['Pamięć_RAM'] = $_POST['Pamięć_RAM'];
+            $_SESSION['Pamięć_Wbudowana'] = $_POST['Pamięć_Wbudowana'];
+            $_SESSION['Pojemność_Baterii_mAh'] = $_POST['Pojemność_Baterii_mAh'];
+            $_SESSION['Ładowanie_Bezprzewodowe'] = $_POST['Ładowanie_Bezprzewodowe'];
+            $_SESSION['Szybkość_Ładowania_Przewodowego'] = $_POST['Szybkość_Ładowania_Przewodowego'];
+            $_SESSION['Wymienna_Bateria'] = $_POST['Wymienna_Bateria'];
+            $_SESSION['cena'] = $_POST['cena'];
+            $connect = new mysqli("localhost", "root", "", "gh_store");
+            if ($connect->query($sql)) {
+                echo "Udało się";
+                $_SESSION['can_specific_params'] = true;
+                header("Location: smartphones_parametersDB.php");
+            } else {
+                echo "Błąd";
+            }
             echo $sql;
             exit();
         }

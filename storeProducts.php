@@ -210,7 +210,7 @@ session_start();
                         </h2>
                     </div>
                     <div class="bottom_product_section">
-                        <figure>
+                        <figure id="product_image">
                             <img src="img/storeProducts/smartphones/' . $row2['sciezka_do_zdjecia'] . '" alt="' . $row['name'] . '">
                             <figcaption>' . $row['marka'] . '</figcaption>
                         </figure>

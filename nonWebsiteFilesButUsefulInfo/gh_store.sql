@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 28 Kwi 2024, 14:08
+-- Czas generowania: 01 Maj 2024, 14:57
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -404,7 +404,7 @@ CREATE TABLE `smartphones` (
 
 INSERT INTO `smartphones` (`id`, `name`, `ocena_uzytkownikow`, `rok_premiery`, `marka`, `przekatna_ekranu`, `zagiecie_ekranu`, `rozdzielczosc_ekranu`, `odswiezanie_ekranu__hz_`, `technologia_ekranu`, `skladany_ekran`, `system_operacyjny`, `ostateczny_mozliwy_system_operacyjny`, `wodoodpornosc`, `dual_sim`, `jack_na_sluchawki_przewodowe`, `slot_na_karte_sd`, `typ_zlacza_usb`, `piec_g`, `nfc`, `standard_bluetooth`, `bardzo_szybki_internet`, `rozdzielczosc_aparatu_tylu__mpx_`, `rozdzielczosc_aparatu_przedniego__mpx_`, `rozdzielczosc_nagrywanego_wideo_tyl`, `rozdzielczosc_nagrywanego_wideo_przod`, `taktowanie_procesora`, `marka_procesora`, `predkosc_pamieci_ram`, `pamiec_ram`, `pamiec_wbudowana`, `pojemnosc_baterii__mah_`, `ladowanie_bezprzewodowe`, `szybkosc_ladowania_przewodowego`, `wymienna_bateria`, `cena`) VALUES
 (7, 'iPhone 13 4/512', '5', '2021', 'apple', 'Od 6 cal do 6.4 cal', 'Nie', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '60Hz', 'oled/amoled/poled', 'nie', 'ios', 'ios 21', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.1', 'tak', 'od 12 do 24', 'od 9 do 25', '4K@60fps', '4K@30fps', 'od 2.9 Ghz do 3.5 Ghz', 'Apple', 'od 3200 MHz do 5000 MHz', '4GB', '512GB', 'poniżej 4000mAH', 'tak', '15W do 34W', 'nie', '1800 do 2500zł'),
-(14, 'Google Pixel 7', '3', '2022', 'google', 'Od 6 cal do 6.4 cal', 'Nie', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '90Hz', 'oled/amoled/poled', 'nie', 'android', 'android 21', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.2', 'tak', 'od 25 do 50', 'od 9 do 25', '4K@60fps', '4K@30fps', 'od 2.9 Ghz do 3.5 Ghz', 'Google Tensor', 'od 2601 MHz do 3200 MHz', '8GB', '256GB', 'od 4000mAH do 4499mAH', 'tak', '15W do 34W', 'nie', '1800 do 2500zł');
+(14, 'Google Pixel 7 8/256', '3', '2022', 'google', 'Od 6 cal do 6.4 cal', 'Nie', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '90Hz', 'oled/amoled/poled', 'nie', 'android', 'android 21', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.2', 'tak', 'od 25 do 50', 'od 9 do 25', '4K@60fps', '4K@30fps', 'od 2.9 Ghz do 3.5 Ghz', 'Google Tensor', 'od 2601 MHz do 3200 MHz', '8GB', '256GB', 'od 4000mAH do 4499mAH', 'tak', '15W do 34W', 'nie', '1800 do 2500zł');
 
 -- --------------------------------------------------------
 
@@ -457,8 +457,8 @@ CREATE TABLE `smartphones_parameters` (
 --
 
 INSERT INTO `smartphones_parameters` (`id`, `name`, `ocena_uzytkownikow`, `rok_premiery`, `marka`, `przekatna_ekranu`, `zagiecie_ekranu`, `rozdzielczosc_ekranu`, `odswiezanie_ekranu__hz_`, `technologia_ekranu`, `skladany_ekran`, `system_operacyjny`, `ostateczny_mozliwy_system_operacyjny`, `wodoodpornosc`, `dual_sim`, `jack_na_sluchawki_przewodowe`, `slot_na_karte_sd`, `typ_zlacza_usb`, `5G`, `nfc`, `standard_bluetooth`, `bardzo_szybki_internet`, `rozdzielczosc_aparatu_tylu__mpx_`, `rozdzielczosc_aparatu_przedniego__mpx_`, `rozdzielczosc_nagrywanego_wideo_tyl`, `rozdzielczosc_nagrywanego_wideo_przod`, `taktowanie_procesora`, `marka_procesora`, `predkosc_pamieci_ram`, `pamiec_ram`, `pamiec_wbudowana`, `pojemnosc_baterii__mah_`, `ladowanie_bezprzewodowe`, `szybkosc_ladowania_przewodowego`, `wymienna_bateria`, `cena`, `sciezka_do_zdjecia`) VALUES
-(4, 'iPhone 13 4/512', '5', '2021', 'Apple', '6.1 Cal', 'Nie', '1170 x 2532 px', '60Hz', 'OLED/AMOLED', 'Nie', 'iOS 16', 'iOS 21', 'Tak', 'Tak', 'Nie', 'Nie', 'USB-c', 'Tak', 'Tak', '5.1', 'Tak', '12 MP &amp; 12 MP', '12Mpx', '4k@60fps', '4k@30fps', '2 x 3.2 GHz &amp; 4 x 2 GHz (Apple A15 Bionic)', 'Apple A15 Bionic', '4000MHz', '4GB', '512GB', '3240 mAh', 'Tak', '20W', 'Nie', '2499zł', 'img/storeProducts/smartphones/iPhone13.jpg'),
-(7, 'Google Pixel 7 8/256', '3', '2022', 'google', '6.3Cal', 'Nie', '1080 x 2400 px', '90Hz', 'OLED/AMOLED', 'Nie', 'Android 14', 'Android 21', 'Tak', 'Tak', 'Nie', 'Nie', 'USB-c', 'Tak', 'Tak', '5.2', 'Tak', '50 MP &amp; 12 MP', '10.8MP', '4k@60fps', '4k@30fps', '2 x 2.85 GHz &amp; 2 x 2.35 GHz &amp; 4 x 1.8 GHz (Google Tensor G2)', 'Google Tensor G2', '2800MHz', '8GB', '256GB', '4355 mAh', 'Tak', '30W', 'Nie', '2000zł', 'img/storeProducts/smartphones/Pixel7.jpg');
+(4, 'iPhone 13 4/512', '5', '2021', 'Apple', '6.1 Cal', 'Nie', '1170 x 2532 px', '60Hz', 'OLED/AMOLED', 'Nie', 'iOS 16', 'iOS 21', 'Tak', 'Tak', 'Nie', 'Nie', 'USB-c', 'Tak', 'Tak', '5.1', 'Tak', '12 MP &amp; 12 MP', '12Mpx', '4k@60fps', '4k@30fps', '2 x 3.2 GHz &amp; 4 x 2 GHz (Apple A15 Bionic)', 'Apple A15 Bionic', '4000MHz', '4GB', '512GB', '3240 mAh', 'Tak', '20W', 'Nie', '2499zł', 'iPhone13.jpg'),
+(7, 'Google Pixel 7 8/256', '3', '2022', 'google', '6.3Cal', 'Nie', '1080 x 2400 px', '90Hz', 'OLED/AMOLED', 'Nie', 'Android 14', 'Android 21', 'Tak', 'Tak', 'Nie', 'Nie', 'USB-c', 'Tak', 'Tak', '5.2', 'Tak', '50 MP &amp; 12 MP', '10.8MP', '4k@60fps', '4k@30fps', '2 x 2.85 GHz &amp; 2 x 2.35 GHz &amp; 4 x 1.8 GHz (Google Tensor G2)', 'Google Tensor G2', '2800MHz', '8GB', '256GB', '4355 mAh', 'Tak', '30W', 'Nie', '2000zł', 'Pixel7.jpg');
 
 --
 -- Indeksy dla zrzutów tabel
