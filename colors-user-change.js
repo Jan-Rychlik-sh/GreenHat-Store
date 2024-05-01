@@ -1,3 +1,8 @@
+document.querySelector(
+  "head"
+).innerHTML += `<style>#container{filter: ${localStorage.getItem(
+  "filters_website_color"
+)};}</style>`;
 document.querySelector("#colors-change").addEventListener("click", function () {
   document.querySelector("#colors-change-options").style.display = "block";
   document
@@ -22,6 +27,13 @@ document.querySelector("#colors-change").addEventListener("click", function () {
     let filterValue = values.join(" ");
     console.log(filterValue);
     document.getElementById("container").style.filter = filterValue;
+    localStorage.removeItem("filters_website_color");
+    localStorage.setItem("filters_website_color", filterValue);
+    document.querySelector(
+      "head"
+    ).innerHTML += `<style>#container{filter: ${localStorage.getItem(
+      "filters_website_color"
+    )};}</style>`;
   };
 
   inputs.forEach(function (input, index) {

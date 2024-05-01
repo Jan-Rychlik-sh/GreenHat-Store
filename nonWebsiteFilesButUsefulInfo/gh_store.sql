@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Kwi 2024, 14:20
+-- Czas generowania: 28 Kwi 2024, 14:08
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -47,7 +47,6 @@ INSERT INTO `filters` (`id`, `name`, `forWhichProduct`) VALUES
 (7, 'Odświeżanie Ekranu [Hz]', 'Smartphones'),
 (8, 'Technologia ekranu', 'Smartphones'),
 (9, 'Składany ekran', 'Smartphones'),
-(10, 'Materiał wykonania', 'Smartphones'),
 (11, 'System Operacyjny', 'Smartphones'),
 (12, 'Ostateczny możliwy system operacyjny', 'Smartphones'),
 (13, 'Wodoodporność', 'Smartphones'),
@@ -71,7 +70,8 @@ INSERT INTO `filters` (`id`, `name`, `forWhichProduct`) VALUES
 (32, 'Pojemność Baterii [mAh]', 'Smartphones'),
 (33, 'Ładowanie Bezprzewodowe', 'Smartphones'),
 (34, 'Szybkość Ładowania Przewodowego', 'Smartphones'),
-(35, 'Wymienna Bateria', 'Smartphones');
+(35, 'Wymienna Bateria', 'Smartphones'),
+(36, 'cena', 'Smartphones');
 
 -- --------------------------------------------------------
 
@@ -199,8 +199,8 @@ INSERT INTO `options` (`id`, `name`, `forWhichFilter`, `type`) VALUES
 (28, 'sony', 'Marka', 'Smartphones'),
 (29, 'myphone', 'Marka', 'Smartphones'),
 (30, 'Poniżej 6 cal', 'Przekątna ekranu', 'Smartphones'),
-(31, 'Od 6 cal-6.4 cal', 'Przekątna ekranu', 'Smartphones'),
-(32, 'Od 6.5 cal-6.9 cal', 'Przekątna ekranu', 'Smartphones'),
+(31, 'Od 6 cal do 6.4 cal', 'Przekątna ekranu', 'Smartphones'),
+(32, 'Od 6.5 cal do 6.9 cal', 'Przekątna ekranu', 'Smartphones'),
 (33, 'Od 7 cal', 'Przekątna ekranu', 'Smartphones'),
 (34, 'Tak', 'Zagięty ekran', 'Smartphones'),
 (35, 'Nie', 'Zagięty ekran', 'Smartphones'),
@@ -218,10 +218,6 @@ INSERT INTO `options` (`id`, `name`, `forWhichFilter`, `type`) VALUES
 (47, 'tft/led/hd+/ltps/pls', 'Technologia ekranu', 'Smartphones'),
 (48, 'tak', 'Składany ekran', 'Smartphones'),
 (49, 'nie', 'Składany ekran', 'Smartphones'),
-(50, 'tytan', 'Materiał wykonania', 'Smartphones'),
-(51, 'metal', 'Materiał wykonania', 'Smartphones'),
-(52, 'tworzywo sztuczne', 'Materiał wykonania', 'Smartphones'),
-(53, 'skóra wegańska', 'Materiał wykonania', 'Smartphones'),
 (54, 'android', 'System Operacyjny', 'Smartphones'),
 (55, 'ios', 'System Operacyjny', 'Smartphones'),
 (56, 'hms (huawei)', 'System Operacyjny', 'Smartphones'),
@@ -343,12 +339,19 @@ INSERT INTO `options` (`id`, `name`, `forWhichFilter`, `type`) VALUES
 (172, 'tak', 'Ładowanie Bezprzewodowe', 'Smartphones'),
 (173, 'nie', 'Ładowanie Bezprzewodowe', 'Smartphones'),
 (174, 'powyżej 100W', 'Szybkość Ładowania Przewodowego', 'Smartphones'),
-(175, '60W-100W', 'Szybkość Ładowania Przewodowego', 'Smartphones'),
-(176, '35W-59W', 'Szybkość Ładowania Przewodowego', 'Smartphones'),
-(177, '15W-34W', 'Szybkość Ładowania Przewodowego', 'Smartphones'),
+(175, '60W do 100W', 'Szybkość Ładowania Przewodowego', 'Smartphones'),
+(176, '35W do 59W', 'Szybkość Ładowania Przewodowego', 'Smartphones'),
+(177, '15W do 34W', 'Szybkość Ładowania Przewodowego', 'Smartphones'),
 (178, 'poniżej 15W', 'Szybkość Ładowania Przewodowego', 'Smartphones'),
 (179, 'tak', 'Wymienna Bateria', 'Smartphones'),
-(180, 'nie', 'Wymienna Bateria', 'Smartphones');
+(180, 'nie', 'Wymienna Bateria', 'Smartphones'),
+(182, '0 do 500zł', 'cena', 'Smartphones'),
+(183, '501 do 1000zł', 'cena', 'Smartphones'),
+(184, '1001 do 1600zł', 'cena', 'Smartphones'),
+(185, '1601 do 2200zł', 'cena', 'Smartphones'),
+(186, '2201 do 3000zł', 'cena', 'Smartphones'),
+(187, '3000 do 4000zł', 'cena', 'Smartphones'),
+(188, '4000 do 10000zł', 'cena', 'Smartphones');
 
 -- --------------------------------------------------------
 
@@ -368,7 +371,6 @@ CREATE TABLE `smartphones` (
   `odswiezanie_ekranu__hz_` varchar(255) DEFAULT NULL,
   `technologia_ekranu` varchar(255) DEFAULT NULL,
   `skladany_ekran` varchar(255) DEFAULT NULL,
-  `material_wykonania` varchar(255) DEFAULT NULL,
   `system_operacyjny` varchar(255) DEFAULT NULL,
   `ostateczny_mozliwy_system_operacyjny` varchar(255) DEFAULT NULL,
   `wodoodpornosc` varchar(255) DEFAULT NULL,
@@ -392,17 +394,71 @@ CREATE TABLE `smartphones` (
   `pojemnosc_baterii__mah_` varchar(255) DEFAULT NULL,
   `ladowanie_bezprzewodowe` varchar(255) DEFAULT NULL,
   `szybkosc_ladowania_przewodowego` varchar(255) DEFAULT NULL,
-  `wymienna_bateria` varchar(255) DEFAULT NULL
+  `wymienna_bateria` varchar(255) DEFAULT NULL,
+  `cena` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `smartphones`
 --
 
-INSERT INTO `smartphones` (`id`, `name`, `ocena_uzytkownikow`, `rok_premiery`, `marka`, `przekatna_ekranu`, `zagiecie_ekranu`, `rozdzielczosc_ekranu`, `odswiezanie_ekranu__hz_`, `technologia_ekranu`, `skladany_ekran`, `material_wykonania`, `system_operacyjny`, `ostateczny_mozliwy_system_operacyjny`, `wodoodpornosc`, `dual_sim`, `jack_na_sluchawki_przewodowe`, `slot_na_karte_sd`, `typ_zlacza_usb`, `piec_g`, `nfc`, `standard_bluetooth`, `bardzo_szybki_internet`, `rozdzielczosc_aparatu_tylu__mpx_`, `rozdzielczosc_aparatu_przedniego__mpx_`, `rozdzielczosc_nagrywanego_wideo_tyl`, `rozdzielczosc_nagrywanego_wideo_przod`, `taktowanie_procesora`, `marka_procesora`, `predkosc_pamieci_ram`, `pamiec_ram`, `pamiec_wbudowana`, `pojemnosc_baterii__mah_`, `ladowanie_bezprzewodowe`, `szybkosc_ladowania_przewodowego`, `wymienna_bateria`) VALUES
-(1, 'Apple iPhone 15 Pro Max 8GB/1TB', '5', '2023', 'apple', 'Od 6.5 cal-6.9 cal', 'Nie', 'więcej niż 2K 2560 x 1440', '120Hz', 'oled/amoled/poled', 'nie', 'tytan', 'ios', 'ios 22', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.1', 'tak', 'od 25 do 50', 'od 9 do 25', '4K@60fps', '4k@30fps', 'powyżej 3.5 Ghz', 'Apple', 'Powyżej 5000 MHz', '8GB', '1000 GB i więcej', 'od 4000mAH do 4499mAH', 'tak', '35W-59W', 'nie'),
-(2, 'Example Fon', 'myphone', '2024', '', 'Od 6.5 cal-6.9 cal', 'Nie', 'więcej niż 2K 2560 x 1440', '120Hz', 'oled/amoled/poled', 'nie', 'tytan', 'ios', 'ios 22', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.1', 'tak', 'od 25 do 50', 'od 9 do 25', '4K@60fps', '4k@30fps', 'od 2.9 Ghz do 3.5 Ghz', 'Apple', 'Powyżej 5000 MHz', '12GB', '512GB', '5000mAH do 5499mAH', 'tak', '35W-59W', 'nie'),
-(3, 'Example Fon', 'myphone', '2024', '', 'Od 6.5 cal-6.9 cal', 'Nie', 'więcej niż 2K 2560 x 1440', '120Hz', 'oled/amoled/poled', 'nie', 'tytan', 'ios', 'ios 22', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.1', 'tak', 'od 25 do 50', 'od 9 do 25', '4K@60fps', '4k@30fps', 'od 2.9 Ghz do 3.5 Ghz', 'Apple', 'Powyżej 5000 MHz', '12GB', '512GB', '5000mAH do 5499mAH', 'tak', '35W-59W', 'nie');
+INSERT INTO `smartphones` (`id`, `name`, `ocena_uzytkownikow`, `rok_premiery`, `marka`, `przekatna_ekranu`, `zagiecie_ekranu`, `rozdzielczosc_ekranu`, `odswiezanie_ekranu__hz_`, `technologia_ekranu`, `skladany_ekran`, `system_operacyjny`, `ostateczny_mozliwy_system_operacyjny`, `wodoodpornosc`, `dual_sim`, `jack_na_sluchawki_przewodowe`, `slot_na_karte_sd`, `typ_zlacza_usb`, `piec_g`, `nfc`, `standard_bluetooth`, `bardzo_szybki_internet`, `rozdzielczosc_aparatu_tylu__mpx_`, `rozdzielczosc_aparatu_przedniego__mpx_`, `rozdzielczosc_nagrywanego_wideo_tyl`, `rozdzielczosc_nagrywanego_wideo_przod`, `taktowanie_procesora`, `marka_procesora`, `predkosc_pamieci_ram`, `pamiec_ram`, `pamiec_wbudowana`, `pojemnosc_baterii__mah_`, `ladowanie_bezprzewodowe`, `szybkosc_ladowania_przewodowego`, `wymienna_bateria`, `cena`) VALUES
+(7, 'iPhone 13 4/512', '5', '2021', 'apple', 'Od 6 cal do 6.4 cal', 'Nie', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '60Hz', 'oled/amoled/poled', 'nie', 'ios', 'ios 21', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.1', 'tak', 'od 12 do 24', 'od 9 do 25', '4K@60fps', '4K@30fps', 'od 2.9 Ghz do 3.5 Ghz', 'Apple', 'od 3200 MHz do 5000 MHz', '4GB', '512GB', 'poniżej 4000mAH', 'tak', '15W do 34W', 'nie', '1800 do 2500zł'),
+(14, 'Google Pixel 7', '3', '2022', 'google', 'Od 6 cal do 6.4 cal', 'Nie', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '90Hz', 'oled/amoled/poled', 'nie', 'android', 'android 21', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.2', 'tak', 'od 25 do 50', 'od 9 do 25', '4K@60fps', '4K@30fps', 'od 2.9 Ghz do 3.5 Ghz', 'Google Tensor', 'od 2601 MHz do 3200 MHz', '8GB', '256GB', 'od 4000mAH do 4499mAH', 'tak', '15W do 34W', 'nie', '1800 do 2500zł');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `smartphones_parameters`
+--
+
+CREATE TABLE `smartphones_parameters` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `ocena_uzytkownikow` varchar(255) DEFAULT NULL,
+  `rok_premiery` varchar(255) DEFAULT NULL,
+  `marka` varchar(255) DEFAULT NULL,
+  `przekatna_ekranu` varchar(255) DEFAULT NULL,
+  `zagiecie_ekranu` varchar(255) DEFAULT NULL,
+  `rozdzielczosc_ekranu` varchar(255) DEFAULT NULL,
+  `odswiezanie_ekranu__hz_` varchar(255) DEFAULT NULL,
+  `technologia_ekranu` varchar(255) DEFAULT NULL,
+  `skladany_ekran` varchar(255) DEFAULT NULL,
+  `system_operacyjny` varchar(255) DEFAULT NULL,
+  `ostateczny_mozliwy_system_operacyjny` varchar(255) DEFAULT NULL,
+  `wodoodpornosc` varchar(255) DEFAULT NULL,
+  `dual_sim` varchar(255) DEFAULT NULL,
+  `jack_na_sluchawki_przewodowe` varchar(255) DEFAULT NULL,
+  `slot_na_karte_sd` varchar(255) DEFAULT NULL,
+  `typ_zlacza_usb` varchar(255) DEFAULT NULL,
+  `5G` varchar(40) DEFAULT NULL,
+  `nfc` varchar(255) DEFAULT NULL,
+  `standard_bluetooth` varchar(255) DEFAULT NULL,
+  `bardzo_szybki_internet` varchar(255) DEFAULT NULL,
+  `rozdzielczosc_aparatu_tylu__mpx_` varchar(255) DEFAULT NULL,
+  `rozdzielczosc_aparatu_przedniego__mpx_` varchar(255) DEFAULT NULL,
+  `rozdzielczosc_nagrywanego_wideo_tyl` varchar(255) DEFAULT NULL,
+  `rozdzielczosc_nagrywanego_wideo_przod` varchar(255) DEFAULT NULL,
+  `taktowanie_procesora` varchar(255) DEFAULT NULL,
+  `marka_procesora` varchar(255) DEFAULT NULL,
+  `predkosc_pamieci_ram` varchar(255) DEFAULT NULL,
+  `pamiec_ram` varchar(255) DEFAULT NULL,
+  `pamiec_wbudowana` varchar(255) DEFAULT NULL,
+  `pojemnosc_baterii__mah_` varchar(255) DEFAULT NULL,
+  `ladowanie_bezprzewodowe` varchar(255) DEFAULT NULL,
+  `szybkosc_ladowania_przewodowego` varchar(255) DEFAULT NULL,
+  `wymienna_bateria` varchar(255) DEFAULT NULL,
+  `cena` varchar(255) DEFAULT NULL,
+  `sciezka_do_zdjecia` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `smartphones_parameters`
+--
+
+INSERT INTO `smartphones_parameters` (`id`, `name`, `ocena_uzytkownikow`, `rok_premiery`, `marka`, `przekatna_ekranu`, `zagiecie_ekranu`, `rozdzielczosc_ekranu`, `odswiezanie_ekranu__hz_`, `technologia_ekranu`, `skladany_ekran`, `system_operacyjny`, `ostateczny_mozliwy_system_operacyjny`, `wodoodpornosc`, `dual_sim`, `jack_na_sluchawki_przewodowe`, `slot_na_karte_sd`, `typ_zlacza_usb`, `5G`, `nfc`, `standard_bluetooth`, `bardzo_szybki_internet`, `rozdzielczosc_aparatu_tylu__mpx_`, `rozdzielczosc_aparatu_przedniego__mpx_`, `rozdzielczosc_nagrywanego_wideo_tyl`, `rozdzielczosc_nagrywanego_wideo_przod`, `taktowanie_procesora`, `marka_procesora`, `predkosc_pamieci_ram`, `pamiec_ram`, `pamiec_wbudowana`, `pojemnosc_baterii__mah_`, `ladowanie_bezprzewodowe`, `szybkosc_ladowania_przewodowego`, `wymienna_bateria`, `cena`, `sciezka_do_zdjecia`) VALUES
+(4, 'iPhone 13 4/512', '5', '2021', 'Apple', '6.1 Cal', 'Nie', '1170 x 2532 px', '60Hz', 'OLED/AMOLED', 'Nie', 'iOS 16', 'iOS 21', 'Tak', 'Tak', 'Nie', 'Nie', 'USB-c', 'Tak', 'Tak', '5.1', 'Tak', '12 MP &amp; 12 MP', '12Mpx', '4k@60fps', '4k@30fps', '2 x 3.2 GHz &amp; 4 x 2 GHz (Apple A15 Bionic)', 'Apple A15 Bionic', '4000MHz', '4GB', '512GB', '3240 mAh', 'Tak', '20W', 'Nie', '2499zł', 'img/storeProducts/smartphones/iPhone13.jpg'),
+(7, 'Google Pixel 7 8/256', '3', '2022', 'google', '6.3Cal', 'Nie', '1080 x 2400 px', '90Hz', 'OLED/AMOLED', 'Nie', 'Android 14', 'Android 21', 'Tak', 'Tak', 'Nie', 'Nie', 'USB-c', 'Tak', 'Tak', '5.2', 'Tak', '50 MP &amp; 12 MP', '10.8MP', '4k@60fps', '4k@30fps', '2 x 2.85 GHz &amp; 2 x 2.35 GHz &amp; 4 x 1.8 GHz (Google Tensor G2)', 'Google Tensor G2', '2800MHz', '8GB', '256GB', '4355 mAh', 'Tak', '30W', 'Nie', '2000zł', 'img/storeProducts/smartphones/Pixel7.jpg');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -428,6 +484,12 @@ ALTER TABLE `smartphones`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeksy dla tabeli `smartphones_parameters`
+--
+ALTER TABLE `smartphones_parameters`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT dla zrzuconych tabel
 --
 
@@ -441,13 +503,19 @@ ALTER TABLE `main_site_arrow_menu_options_childs`
 -- AUTO_INCREMENT dla tabeli `options`
 --
 ALTER TABLE `options`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
 
 --
 -- AUTO_INCREMENT dla tabeli `smartphones`
 --
 ALTER TABLE `smartphones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT dla tabeli `smartphones_parameters`
+--
+ALTER TABLE `smartphones_parameters`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

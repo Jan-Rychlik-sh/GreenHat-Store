@@ -8,6 +8,8 @@ Następnie przekierujemy usera do odpowiedniej podstrony z już włączonymi fil
 
 Na podstronie w menu będzie się znajdował sorter z opcjami: cena - od najniższej, cena - od najwyższej, najwięcej opinii, najlepsze opinie, od najnowszego, od najstarszego - zrobione
 
+Trzeba zrobić wygodną aplikację do wkładania informacji do BD dla administratora systemu. - zrobione
+
 Trzeba powkładać więcej smartfonów do BD z oszacowanymi opcjami, z dokładnymi opcjami i zrobić folder ze zdjęciami tych smartfonów - do zrobienia
 
 Na końcu będzie przycisk z napisem filtruj, który zatwierdzi podane filtry. Po kliknięciu w ten guzik strona się odświeży a w mainie pokażą się tylko te produkty, które spełniają wymagania. - do zrobienia (To będzie najtrudniejsze zadanie)

@@ -1,5 +1,6 @@
 "use strict";
 
+document.querySelector("head").innerHTML += "<style>#container{filter: ".concat(localStorage.getItem("filters_website_color"), ";}</style>");
 document.querySelector("#colors-change").addEventListener("click", function () {
   document.querySelector("#colors-change-options").style.display = "block";
   document.querySelector("#close-colors").addEventListener("click", function () {
@@ -19,6 +20,9 @@ document.querySelector("#colors-change").addEventListener("click", function () {
     var filterValue = values.join(" ");
     console.log(filterValue);
     document.getElementById("container").style.filter = filterValue;
+    localStorage.removeItem("filters_website_color");
+    localStorage.setItem("filters_website_color", filterValue);
+    document.querySelector("head").innerHTML += "<style>#container{filter: ".concat(localStorage.getItem("filters_website_color"), ";}</style>");
   };
 
   inputs.forEach(function (input, index) {
