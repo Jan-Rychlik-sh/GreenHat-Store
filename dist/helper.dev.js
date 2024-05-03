@@ -62,7 +62,7 @@ var _didIteratorError3 = false;
 var _iteratorError3 = undefined;
 
 try {
-  var _loop = function _loop() {
+  var _loop2 = function _loop2() {
     var box = _step3.value;
     box.addEventListener("change", function () {
       localStorage.setItem(box.id, box.checked);
@@ -76,7 +76,7 @@ try {
   };
 
   for (var _iterator3 = boxes[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-    _loop();
+    _loop2();
   }
 } catch (err) {
   _didIteratorError3 = true;
@@ -152,23 +152,123 @@ select.addEventListener("change", function () {
   var selectedOption = select.options[select.selectedIndex];
   localStorage.setItem(selectedOption.id, selectedOption.selected);
   console.log("Zapisano stan opcji: " + selectedOption.id + " = " + selectedOption.selected);
-}); // Pobierz kontener divów .product
+}); //Sortowanie elementów strony
 
-var mainContent = document.getElementById("main-content"); // Pobierz wszystkie divy o klasie .product
+if (document.querySelector("select").value != "Najlepiej oceniane") {
+  var mainContent = document.getElementById("main-content");
+  var products = mainContent.querySelectorAll(".product");
+  console.log(products = mainContent.querySelectorAll(".product"));
 
-var products = mainContent.querySelectorAll(".product"); // Przekształć wynik z NodeList do tablicy, aby użyć metody sort
+  if (products.length > 0) {
+    var productsArray = Array.from(products);
+    productsArray.sort(function (a, b) {
+      var priceA = parseFloat(a.querySelector(".price").innerText.replace("zł", ""));
+      var priceB = parseFloat(b.querySelector(".price").innerText.replace("zł", ""));
+      if (document.querySelector("select").value == "Od najtańszego") return priceA - priceB; // Sortowanie rosnąco
+      else if (document.querySelector("select").value == "Od najdroższego") return priceB - priceA; // Sortowanie malejąco
+    });
+    mainContent.innerHTML = "";
+    productsArray.forEach(function (product) {
+      mainContent.appendChild(product);
+    });
+  }
+}
 
-var productsArray = Array.from(products); // Posortuj tablicę divów .product względem ich dzieci o klasie .price
+function fixTextToDatabaseFormat(text) {
+  // Sprawdź czy text jest łańcuchem znaków
+  if (typeof text !== "string") {
+    throw new Error('Argument "text" musi być łańcuchem znaków.');
+  }
 
-productsArray.sort(function (a, b) {
-  var priceA = parseFloat(a.querySelector(".price").innerText.replace("zł", ""));
-  var priceB = parseFloat(b.querySelector(".price").innerText.replace("zł", ""));
-  if (document.querySelector("select").value == "Od najtańszego") return priceA - priceB; // Sortowanie rosnąco
-  else if (document.querySelector("select").value == "Od najdroższego") return priceB - priceA; // Sortowanie malejąco
-}); // Wyczyść kontener
+  var polishToEnglish = {
+    ą: "a",
+    ć: "c",
+    ę: "e",
+    ł: "l",
+    ń: "n",
+    ó: "o",
+    ś: "s",
+    ź: "z",
+    ż: "z",
+    Ą: "A",
+    Ć: "C",
+    Ę: "E",
+    Ł: "L",
+    Ń: "N",
+    Ó: "O",
+    Ś: "S",
+    Ź: "Z",
+    Ż: "Z"
+  }; // Zamień polskie znaki na ich angielskie odpowiedniki
 
-mainContent.innerHTML = ""; // Ponownie wstaw posortowane divy .product do kontenera
+  text = text.replace(/[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g, function (match) {
+    return polishToEnglish[match];
+  }); // Zamień spacje, nawiasy kwadratowe i nawiasy okrągłe na podkreślenia
 
-productsArray.forEach(function (product) {
-  mainContent.appendChild(product);
-});
+  text = text.replace(/[\s\[\]()-]/g, "_"); // Zamień wszystkie litery na małe
+
+  text = text.toLowerCase();
+  return text;
+} //Ta funkcja Wyświtli aktywne filtry wraz z aktywnymi opcjami
+
+
+function printActiveFilters() {
+  var article = document.getElementById("active_filters_description");
+  var detailsWithCheckbox = document.querySelectorAll('details input[type="checkbox"]:checked');
+  var titleOfLabelWithCheckedBoxes = Array.from(detailsWithCheckbox).map(function (box) {
+    box.closest("details").setAttribute("open", "");
+    return box.closest("label").title;
+  }); //Usunięcie powtarzających się elementów
+
+  titleOfLabelWithCheckedBoxes = new Set(titleOfLabelWithCheckedBoxes);
+  titleOfLabelWithCheckedBoxes = Array.from(titleOfLabelWithCheckedBoxes);
+  var _iteratorNormalCompletion6 = true;
+  var _didIteratorError6 = false;
+  var _iteratorError6 = undefined;
+
+  try {
+    var _loop = function _loop() {
+      var tl = _step6.value;
+      var section = document.createElement("section");
+      section.classList.add("checkedFilterInfo");
+      var checkedFiltersTitle = document.createElement("h4");
+      checkedFiltersTitle.innerHTML = tl;
+      var ul = document.createElement("ul");
+      detailsWithCheckbox.forEach(function (checkbox) {
+        var li = document.createElement("li");
+        li.innerHTML = checkbox.id.substring(0, checkbox.id.indexOf("-"));
+        console.log(checkbox.id.substring(checkbox.id.indexOf("-") + 1));
+        console.log(fixTextToDatabaseFormat(checkedFiltersTitle.innerText));
+
+        if (fixTextToDatabaseFormat(checkedFiltersTitle.innerText) == checkbox.id.substring(checkbox.id.indexOf("-") + 1)) {
+          ul.appendChild(li);
+        }
+
+        section.appendChild(checkedFiltersTitle);
+        section.appendChild(ul);
+      });
+      article.appendChild(section);
+    };
+
+    for (var _iterator6 = titleOfLabelWithCheckedBoxes[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+      _loop();
+    }
+  } catch (err) {
+    _didIteratorError6 = true;
+    _iteratorError6 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion6 && _iterator6["return"] != null) {
+        _iterator6["return"]();
+      }
+    } finally {
+      if (_didIteratorError6) {
+        throw _iteratorError6;
+      }
+    }
+  }
+
+  console.log(titleOfLabelWithCheckedBoxes);
+}
+
+printActiveFilters();

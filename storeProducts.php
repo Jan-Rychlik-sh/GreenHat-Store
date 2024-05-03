@@ -66,7 +66,9 @@ session_start();
                             </select>
                         </div>
                         <div id="active_filters">
-                            Aktywne filtry (aby usunąć filtry kliknij przycisk: Usuń filtry lub odznacz je ręcznie):
+                            <h3>Aktywne filtry (aby usunąć filtry kliknij przycisk: Usuń filtry lub odznacz je ręcznie):</h3>
+                            <article id="active_filters_description">
+                            </article>
                         </div>
                         <?php
                         function FixTextToDatabaseFormat($text)
@@ -112,7 +114,7 @@ session_start();
                         if ($rezult2->num_rows > 0) {
                             function generateChecbox($checked, $row, $row2)
                             {
-                                echo "<label class='optionFilter'><caption class='FilterDescription'>" . $row2["name"] . "</caption><input type='checkbox' class='optionCheckbox' $checked name='" . $row2["name"] . "-" . FixTextToDatabaseFormat($row["name"]) . "' id='" . $row2["name"] . "-" . FixTextToDatabaseFormat($row["name"]) . "' ></label><hr>";
+                                echo "<label class='optionFilter' title='" . $row["name"] . "'><caption class='FilterDescription'>" . $row2["name"] . "</caption><input type='checkbox' class='optionCheckbox' $checked name='" . $row2["name"] . "-" . FixTextToDatabaseFormat($row["name"]) . "' id='" . $row2["name"] . "-" . FixTextToDatabaseFormat($row["name"]) . "' ></label><hr>";
                                 //Dodanie do localStorage filtrów domyślnie zaznaczonych z powodu kliknięcia w daną opcję w pliku index.php
                                 echo <<<HTML
                                 <script>
@@ -213,7 +215,6 @@ session_start();
                     if (isset($_SESSION['sorting'])) {
                         $sql .= $_SESSION['sorting'];
                     }
-                    echo $sql;
                 }
 
                 $connect = new mysqli("localhost", "root", "", "gh_store");

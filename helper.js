@@ -53,33 +53,110 @@ select.addEventListener("change", function () {
   );
 });
 
-// Pobierz kontener divów .product
-let mainContent = document.getElementById("main-content");
+//Sortowanie elementów strony
+if (document.querySelector("select").value != "Najlepiej oceniane") {
+  let mainContent = document.getElementById("main-content");
+  let products = mainContent.querySelectorAll(".product");
+  console.log((products = mainContent.querySelectorAll(".product")));
+  if (products.length > 0) {
+    let productsArray = Array.from(products);
+    productsArray.sort((a, b) => {
+      let priceA = parseFloat(
+        a.querySelector(".price").innerText.replace("zł", "")
+      );
+      let priceB = parseFloat(
+        b.querySelector(".price").innerText.replace("zł", "")
+      );
+      if (document.querySelector("select").value == "Od najtańszego")
+        return priceA - priceB; // Sortowanie rosnąco
+      else if (document.querySelector("select").value == "Od najdroższego")
+        return priceB - priceA; // Sortowanie malejąco
+    });
+    mainContent.innerHTML = "";
+    productsArray.forEach((product) => {
+      mainContent.appendChild(product);
+    });
+  }
+}
 
-// Pobierz wszystkie divy o klasie .product
-let products = mainContent.querySelectorAll(".product");
+function fixTextToDatabaseFormat(text) {
+  // Sprawdź czy text jest łańcuchem znaków
+  if (typeof text !== "string") {
+    throw new Error('Argument "text" musi być łańcuchem znaków.');
+  }
 
-// Przekształć wynik z NodeList do tablicy, aby użyć metody sort
-let productsArray = Array.from(products);
+  var polishToEnglish = {
+    ą: "a",
+    ć: "c",
+    ę: "e",
+    ł: "l",
+    ń: "n",
+    ó: "o",
+    ś: "s",
+    ź: "z",
+    ż: "z",
+    Ą: "A",
+    Ć: "C",
+    Ę: "E",
+    Ł: "L",
+    Ń: "N",
+    Ó: "O",
+    Ś: "S",
+    Ź: "Z",
+    Ż: "Z",
+  };
 
-// Posortuj tablicę divów .product względem ich dzieci o klasie .price
-productsArray.sort((a, b) => {
-  let priceA = parseFloat(
-    a.querySelector(".price").innerText.replace("zł", "")
+  // Zamień polskie znaki na ich angielskie odpowiedniki
+  text = text.replace(/[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g, function (match) {
+    return polishToEnglish[match];
+  });
+
+  // Zamień spacje, nawiasy kwadratowe i nawiasy okrągłe na podkreślenia
+  text = text.replace(/[\s\[\]()-]/g, "_");
+
+  // Zamień wszystkie litery na małe
+  text = text.toLowerCase();
+
+  return text;
+}
+
+//Ta funkcja Wyświtli aktywne filtry wraz z aktywnymi opcjami
+function printActiveFilters() {
+  let article = document.getElementById("active_filters_description");
+  var detailsWithCheckbox = document.querySelectorAll(
+    'details input[type="checkbox"]:checked'
   );
-  let priceB = parseFloat(
-    b.querySelector(".price").innerText.replace("zł", "")
+  let titleOfLabelWithCheckedBoxes = Array.from(detailsWithCheckbox).map(
+    (box) => {
+      box.closest("details").setAttribute("open", "");
+      return box.closest("label").title;
+    }
   );
-  if (document.querySelector("select").value == "Od najtańszego")
-    return priceA - priceB; // Sortowanie rosnąco
-  else if (document.querySelector("select").value == "Od najdroższego")
-    return priceB - priceA; // Sortowanie malejąco
-});
-
-// Wyczyść kontener
-mainContent.innerHTML = "";
-
-// Ponownie wstaw posortowane divy .product do kontenera
-productsArray.forEach((product) => {
-  mainContent.appendChild(product);
-});
+  //Usunięcie powtarzających się elementów
+  titleOfLabelWithCheckedBoxes = new Set(titleOfLabelWithCheckedBoxes);
+  titleOfLabelWithCheckedBoxes = Array.from(titleOfLabelWithCheckedBoxes);
+  for (let tl of titleOfLabelWithCheckedBoxes) {
+    let section = document.createElement("section");
+    section.classList.add("checkedFilterInfo");
+    let checkedFiltersTitle = document.createElement("h4");
+    checkedFiltersTitle.innerHTML = tl;
+    let ul = document.createElement("ul");
+    detailsWithCheckbox.forEach((checkbox) => {
+      let li = document.createElement("li");
+      li.innerHTML = checkbox.id.substring(0, checkbox.id.indexOf("-"));
+      console.log(checkbox.id.substring(checkbox.id.indexOf("-") + 1));
+      console.log(fixTextToDatabaseFormat(checkedFiltersTitle.innerText));
+      if (
+        fixTextToDatabaseFormat(checkedFiltersTitle.innerText) ==
+        checkbox.id.substring(checkbox.id.indexOf("-") + 1)
+      ) {
+        ul.appendChild(li);
+      }
+      section.appendChild(checkedFiltersTitle);
+      section.appendChild(ul);
+    });
+    article.appendChild(section);
+  }
+  console.log(titleOfLabelWithCheckedBoxes);
+}
+printActiveFilters();

@@ -203,6 +203,15 @@ html body #container #next-block div#left nav .sort select option:hover {
   filter: invert(1);
   cursor: pointer;
 }
+html body #container #next-block div#left nav #active_filters {
+  background-color: var(--color-green-light2);
+}
+html body #container #next-block div#left nav #active_filters section.checkedFilterInfo h4 {
+  font-size: 30px;
+}
+html body #container #next-block div#left nav #active_filters section.checkedFilterInfo ul li {
+  padding-left: 20px;
+}
 html body #container #next-block div#left nav details {
   text-transform: uppercase;
   font-size: 18px;
