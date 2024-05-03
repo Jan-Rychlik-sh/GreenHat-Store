@@ -178,6 +178,7 @@ html body #container #next-block div#left {
 }
 html body #container #next-block div#left nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: stretch;
   height: 100%;
   width: 100%;

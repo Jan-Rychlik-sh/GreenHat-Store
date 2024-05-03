@@ -65,6 +65,9 @@ session_start();
                                 <option class="sort_option" id="so3">Od najdroższego</option>
                             </select>
                         </div>
+                        <div id="active_filters">
+                            Aktywne filtry (aby usunąć filtry kliknij przycisk: Usuń filtry lub odznacz je ręcznie):
+                        </div>
                         <?php
                         function FixTextToDatabaseFormat($text)
                         {
@@ -107,22 +110,37 @@ session_start();
                         $rezult2 = $connect->query("SELECT name FROM filters WHERE forWhichProduct='" . $_SESSION["category"] . "';");
 
                         if ($rezult2->num_rows > 0) {
+                            function generateChecbox($checked, $row, $row2)
+                            {
+                                echo "<label class='optionFilter'><caption class='FilterDescription'>" . $row2["name"] . "</caption><input type='checkbox' class='optionCheckbox' $checked name='" . $row2["name"] . "-" . FixTextToDatabaseFormat($row["name"]) . "' id='" . $row2["name"] . "-" . FixTextToDatabaseFormat($row["name"]) . "' ></label><hr>";
+                                //Dodanie do localStorage filtrów domyślnie zaznaczonych z powodu kliknięcia w daną opcję w pliku index.php
+                                echo <<<HTML
+                                <script>
+                                    var checkboxesPHPuserChoosedOption = document.querySelectorAll("input[type='checkbox']:checked");
+                                    for (let box of checkboxesPHPuserChoosedOption) {
+                                        if (box.hasAttribute("checked")) {
+                                            localStorage.setItem(box.id, true);
+                                        }
+                                    }
+                                </script>
+                                HTML;
+                            }
                             while ($row = $rezult2->fetch_assoc()) {
                                 echo "<details>" . "<summary>" . $row["name"] . "</summary>";
 
                                 // Wykonaj zapytanie dla każdego filtra
                                 $rezult3 = $connect->query("SELECT * FROM options WHERE `type`='" . $_SESSION["category"] . "' AND forWhichFilter='" . $row["name"] . "'");
-
                                 while ($row2 = $rezult3->fetch_assoc()) {
-                                    if (str_contains($_SESSION['sql'], "'" . $row2["name"] . "'")) {
-                                        echo "<label class='optionFilter'><caption>" . $row2["name"] . "</caption><input type='checkbox' class='optionCheckbox' checked name='" . $row2["name"] . "-" . $row["name"] . "'></label><hr>";
+                                    if (str_contains($_SESSION['sql'], "'" . $row2["name"] . "'") && $_SESSION['first_time_generate'] == true) {
+                                        generateChecbox("checked", $row, $row2);
                                     } else {
-                                        echo "<label class='optionFilter'><caption class='FilterDescription'>" . $row2["name"] . "</caption><input type='checkbox' class='optionCheckbox' name='" . $row2["name"] . "-" . FixTextToDatabaseFormat($row["name"]) . "' id='" . $row2["name"] . "-" . FixTextToDatabaseFormat($row["name"]) . "' ></label><hr>";
+                                        generateChecbox("", $row, $row2);
                                     }
                                 }
 
                                 echo "</details>";
                             }
+                            $_SESSION['first_time_generate'] = false;
                         }
 
                         ?>
@@ -195,6 +213,7 @@ session_start();
                     if (isset($_SESSION['sorting'])) {
                         $sql .= $_SESSION['sorting'];
                     }
+                    echo $sql;
                 }
 
                 $connect = new mysqli("localhost", "root", "", "gh_store");
@@ -242,70 +261,6 @@ session_start();
 
                 ?>
 
-                <!-- <div class="product">
-                    <div class="top_product_section">
-                        <h2>
-                            <div class="product_title">{Tytuł produktu} {RAM}/{ROM} <span class="product_rating">{ocena} <img src="img/storeProducts/star.png" width="25" alt="gwiazdek"></span>
-                            </div>
-                        </h2>
-                    </div>
-                    <div class="bottom_product_section">
-                        <figure>
-                            <img src="img/storeProducts/smartphones/Pixel7.jpg" alt="{Tytuł produktu}">
-                            <figcaption>{Marka produktu}</figcaption>
-                        </figure>
-                        <div class="product_info">
-                            <div class="product_param">
-                                Pamięć wewnętrzna: {ROM}</div>
-                            <div class="product_param">
-                                Pamięć RAM: {RAM}</div>
-                            <div class="product_param">
-                                Pojemność baterii: {Pojemność baterii}</div>
-                            <div class="product_param">
-                                Taktowanie Procesora: {Taktowanie Procesora}</div>
-                            <div class="product_param">
-                                Rozdzielczość aparatu tylnego: {Rozdzielczość aparatu tylnego}</div>
-                            <div class="product_param">
-                                Rozdzielczość nagrywanego wideo tył: {wideo rozdzielczość tył}</div>
-                            <div class="product_param">
-                                System Operacyjny: {system operacyjny} - ostateczna możliwa wersja: {Ostateczny Możliwy system Operacyjny}</div>
-                            <div class="price">{Cena}</div>
-                            <button class="buy">Kup</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="top_product_section">
-                        <h2>
-                            <div class="product_title">{Tytuł produktu} {RAM}/{ROM} <span class="product_rating">{ocena} <img src="img/storeProducts/star.png" width="25" alt="gwiazdek"></span>
-                            </div>
-                        </h2>
-                    </div>
-                    <div class="bottom_product_section">
-                        <figure>
-                            <img src="img/storeProducts/smartphones/Pixel7.jpg" alt="{Tytuł produktu}">
-                            <figcaption>{Marka produktu}</figcaption>
-                        </figure>
-                        <div class="product_info">
-                            <div class="product_param">
-                                Pamięć wewnętrzna: {ROM}</div>
-                            <div class="product_param">
-                                Pamięć RAM: {RAM}</div>
-                            <div class="product_param">
-                                Pojemność baterii: {Pojemność baterii}</div>
-                            <div class="product_param">
-                                Taktowanie Procesora: {Taktowanie Procesora}</div>
-                            <div class="product_param">
-                                Rozdzielczość aparatu tylnego: {Rozdzielczość aparatu tylnego}</div>
-                            <div class="product_param">
-                                Rozdzielczość nagrywanego wideo tył: {wideo rozdzielczość tył}</div>
-                            <div class="product_param">
-                                System Operacyjny: {system operacyjny} - ostateczna możliwa wersja: {Ostateczny Możliwy system Operacyjny}</div>
-                            <div class="price">{Cena}</div>
-                            <button class="buy">Kup</button>
-                        </div>
-                    </div>
-                </div> -->
             </main>
         </div>
     </div>

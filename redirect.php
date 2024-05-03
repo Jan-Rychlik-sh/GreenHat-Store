@@ -124,3 +124,5 @@ else if (!isset($filtersByCategory[$_SESSION["category"]][$filterName]) and $_SE
     echo "<br>Ta strona jest w trakcie budowy<br>";
     echo "<a href='index.php'>Powrót do strony głównej.</a>";
 }
+
+$_SESSION['first_time_generate'] = true;
