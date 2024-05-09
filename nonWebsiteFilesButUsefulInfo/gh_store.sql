@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 01 Maj 2024, 14:57
+-- Czas generowania: 07 Maj 2024, 10:40
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -42,7 +42,7 @@ INSERT INTO `filters` (`id`, `name`, `forWhichProduct`) VALUES
 (2, 'Rok premiery', 'Smartphones'),
 (3, 'Marka', 'Smartphones'),
 (4, 'Przekątna ekranu', 'Smartphones'),
-(5, 'Zagięty ekran', 'Smartphones'),
+(5, 'Zagięcie ekranu', 'Smartphones'),
 (6, 'Rozdzielczość ekranu', 'Smartphones'),
 (7, 'Odświeżanie Ekranu [Hz]', 'Smartphones'),
 (8, 'Technologia ekranu', 'Smartphones'),
@@ -58,7 +58,7 @@ INSERT INTO `filters` (`id`, `name`, `forWhichProduct`) VALUES
 (19, 'NFC', 'Smartphones'),
 (20, 'Standard BlueTooth', 'Smartphones'),
 (21, 'Bardzo Szybki Internet', 'Smartphones'),
-(22, 'rozdzielczość aparatu tylnego [Mpx]', 'Smartphones'),
+(22, 'Rozdzielczość aparatu tyłu [Mpx]', 'Smartphones'),
 (23, 'rozdzielczość aparatu przedniego [Mpx]', 'Smartphones'),
 (24, 'Rozdzielczość nagrywanego wideo tył', 'Smartphones'),
 (25, 'Rozdzielczość nagrywanego wideo przód', 'Smartphones'),
@@ -403,8 +403,16 @@ CREATE TABLE `smartphones` (
 --
 
 INSERT INTO `smartphones` (`id`, `name`, `ocena_uzytkownikow`, `rok_premiery`, `marka`, `przekatna_ekranu`, `zagiecie_ekranu`, `rozdzielczosc_ekranu`, `odswiezanie_ekranu__hz_`, `technologia_ekranu`, `skladany_ekran`, `system_operacyjny`, `ostateczny_mozliwy_system_operacyjny`, `wodoodpornosc`, `dual_sim`, `jack_na_sluchawki_przewodowe`, `slot_na_karte_sd`, `typ_zlacza_usb`, `piec_g`, `nfc`, `standard_bluetooth`, `bardzo_szybki_internet`, `rozdzielczosc_aparatu_tylu__mpx_`, `rozdzielczosc_aparatu_przedniego__mpx_`, `rozdzielczosc_nagrywanego_wideo_tyl`, `rozdzielczosc_nagrywanego_wideo_przod`, `taktowanie_procesora`, `marka_procesora`, `predkosc_pamieci_ram`, `pamiec_ram`, `pamiec_wbudowana`, `pojemnosc_baterii__mah_`, `ladowanie_bezprzewodowe`, `szybkosc_ladowania_przewodowego`, `wymienna_bateria`, `cena`) VALUES
-(7, 'iPhone 13 4/512', '5', '2021', 'apple', 'Od 6 cal do 6.4 cal', 'Nie', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '60Hz', 'oled/amoled/poled', 'nie', 'ios', 'ios 21', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.1', 'tak', 'od 12 do 24', 'od 9 do 25', '4K@60fps', '4K@30fps', 'od 2.9 Ghz do 3.5 Ghz', 'Apple', 'od 3200 MHz do 5000 MHz', '4GB', '512GB', 'poniżej 4000mAH', 'tak', '15W do 34W', 'nie', '1800 do 2500zł'),
-(14, 'Google Pixel 7 8/256', '3', '2022', 'google', 'Od 6 cal do 6.4 cal', 'Nie', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '90Hz', 'oled/amoled/poled', 'nie', 'android', 'android 21', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.2', 'tak', 'od 25 do 50', 'od 9 do 25', '4K@60fps', '4K@30fps', 'od 2.9 Ghz do 3.5 Ghz', 'Google Tensor', 'od 2601 MHz do 3200 MHz', '8GB', '256GB', 'od 4000mAH do 4499mAH', 'tak', '15W do 34W', 'nie', '1800 do 2500zł');
+(7, 'iPhone 13', '5', '2021', 'apple', 'Od 6 cal do 6.4 cal', 'Nie', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '60Hz', 'oled/amoled/poled', 'nie', 'ios', 'ios 21', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.1', 'tak', 'od 12 do 24', 'od 9 do 25', '4K@60fps', '4K@30fps', 'od 2.9 Ghz do 3.5 Ghz', 'Apple', 'od 3200 MHz do 5000 MHz', '4GB', '512GB', 'poniżej 4000mAH', 'tak', '15W do 34W', 'nie', '1800 do 2500zł'),
+(14, 'Google Pixel 7', '3', '2022', 'google', 'Od 6 cal do 6.4 cal', 'Nie', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '90Hz', 'oled/amoled/poled', 'nie', 'android', 'android 21', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.2', 'tak', 'od 25 do 50', 'od 9 do 25', '4K@60fps', '4K@30fps', 'od 2.9 Ghz do 3.5 Ghz', 'Google Tensor', 'od 2601 MHz do 3200 MHz', '8GB', '256GB', 'od 4000mAH do 4499mAH', 'tak', '15W do 34W', 'nie', '1800 do 2500zł'),
+(16, 'Honor Magic 6 Pro', '4', '2024', 'honor', 'Od 6.5 cal do 6.9 cal', 'Tak', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '120Hz', 'oled/amoled/poled', 'nie', 'android', 'android 17', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.3', 'tak', 'powyżej 108', 'powyżej 25', '4K@60fps', '4K@60fps', 'od 2.9 Ghz do 3.5 Ghz', 'Qualcom', 'od 3200 MHz do 5000 MHz', '16GB', '1000 GB i więcej', '5500mAH do 6000mAH', 'tak', '60W do 100W', 'nie', '4000 do 10000zł'),
+(18, 'Samsung Galaxy S24 Ultra', '5', '2024', 'samsung', 'Od 6.5 cal do 6.9 cal', 'Nie', 'więcej niż 2K 2560 x 1440', '120Hz', 'oled/amoled/poled', 'nie', 'android', 'android 20', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.3', 'tak', 'powyżej 108', 'od 9 do 25', '8K@30fps', '4K@60fps', 'od 2.9 Ghz do 3.5 Ghz', 'Qualcom', 'od 3200 MHz do 5000 MHz', '12GB', '1000 GB i więcej', '5000mAH do 5499mAH', 'tak', '35W do 59W', 'nie', '4000 do 10000zł'),
+(19, 'Vivo iQOO Z9 Turbo', '5', '2024', 'BBK Electronics (oppo, vivo, realme, one+)', 'Od 6.5 cal do 6.9 cal', 'Nie', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '144Hz', 'oled/amoled/poled', 'nie', 'android', 'android 17', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.4', 'nie', 'od 25 do 50', 'od 5 do 8', '4K@60fps', '4K@30fps', 'od 2.9 Ghz do 3.5 Ghz', 'Qualcom', 'od 3200 MHz do 5000 MHz', '16GB', '512GB', '5500mAH do 6000mAH', 'nie', '60W do 100W', 'nie', '1001 do 1600zł'),
+(20, 'Motorola Moto E13', '2', '2023', 'motorola', 'Od 6.5 cal do 6.9 cal', 'Nie', 'od HD 1280 x 720p do FullHD 1980 x 1080', '90Hz', 'ips', 'nie', 'android', 'android 14', 'nie', 'tak', 'tak', 'tak', 'usb c (zalecane)', 'nie', 'nie', '5', 'nie', 'od 12 do 24', 'od 5 do 8', 'FullHD@30fps', 'poniżej FullHD@30fps (niezalecane)', 'poniżej 2 Ghz', 'Unisoc', 'od 1600 MHz do 2200 MHz', '8GB', '128GB', '5000mAH do 5499mAH', 'nie', 'poniżej 15W', 'nie', '0 do 500zł'),
+(21, 'Motorola Edge 40 Neo', '5', '2023', 'motorola', 'Od 6.5 cal do 6.9 cal', 'Tak', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '144Hz', 'oled/amoled/poled', 'nie', 'android', 'android 16', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.4', 'tak', 'od 25 do 50', 'powyżej 25', '4K@30fps', 'FullHD@30fps', 'od 2.5 Ghz do 2.8 Ghz', 'Mediatek', 'od 2601 MHz do 3200 MHz', '12GB', '256GB', '5000mAH do 5499mAH', 'nie', '60W do 100W', 'nie', '1001 do 1600zł'),
+(22, 'Motorola Edge 50 Pro', '2', '2024', 'motorola', 'Od 6.5 cal do 6.9 cal', 'Tak', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '144Hz', 'oled/amoled/poled', 'nie', 'android', 'android 17', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.4', 'nie', 'od 25 do 50', 'powyżej 25', '4K@30fps', 'FullHD@30fps', 'od 2.5 Ghz do 2.8 Ghz', 'Qualcom', 'od 2601 MHz do 3200 MHz', '12GB', '512GB', 'od 4500mAH do 4999mAH', 'tak', 'powyżej 100W', 'nie', '2201 do 3000zł'),
+(23, 'ZTE Nubia Z60 Ultra', '5', '2023', 'zte/nubia', 'Od 6.5 cal do 6.9 cal', 'Nie', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '120Hz', 'oled/amoled/poled', 'nie', 'android', 'android 16', 'tak', 'tak', 'nie', 'nie', 'usb c (zalecane)', 'tak', 'tak', '5.3', 'tak', 'od 51 do 108', 'od 9 do 25', '8K@30fps', '4K@60fps', 'od 2.9 Ghz do 3.5 Ghz', 'Qualcom', 'od 3200 MHz do 5000 MHz', 'Powyżej 16GB', '1000 GB i więcej', '5500mAH do 6000mAH', 'nie', '60W do 100W', 'nie', '4000 do 10000zł'),
+(24, 'Xiaomi Redmi Note 13', '4', '2024', 'xiaomi', 'Od 6.5 cal do 6.9 cal', 'Nie', 'od FullHD 1980 x 1080 do 2K 2560 x 1440', '120Hz', 'oled/amoled/poled', 'nie', 'android', 'android 15', 'nie', 'tak', 'tak', 'tak', 'usb c (zalecane)', 'tak', 'tak', '5.3', 'nie', 'od 51 do 108', 'od 9 do 25', 'FullHD@30fps', 'poniżej FullHD@30fps (niezalecane)', 'od 2 Ghz do 2.4 Ghz', 'Mediatek', 'od 2001 MHz do 2600 MHz', '12GB', '1000 GB i więcej', '5000mAH do 5499mAH', 'nie', '15W do 34W', 'nie', '501 do 1000zł');
 
 -- --------------------------------------------------------
 
@@ -457,8 +465,16 @@ CREATE TABLE `smartphones_parameters` (
 --
 
 INSERT INTO `smartphones_parameters` (`id`, `name`, `ocena_uzytkownikow`, `rok_premiery`, `marka`, `przekatna_ekranu`, `zagiecie_ekranu`, `rozdzielczosc_ekranu`, `odswiezanie_ekranu__hz_`, `technologia_ekranu`, `skladany_ekran`, `system_operacyjny`, `ostateczny_mozliwy_system_operacyjny`, `wodoodpornosc`, `dual_sim`, `jack_na_sluchawki_przewodowe`, `slot_na_karte_sd`, `typ_zlacza_usb`, `5G`, `nfc`, `standard_bluetooth`, `bardzo_szybki_internet`, `rozdzielczosc_aparatu_tylu__mpx_`, `rozdzielczosc_aparatu_przedniego__mpx_`, `rozdzielczosc_nagrywanego_wideo_tyl`, `rozdzielczosc_nagrywanego_wideo_przod`, `taktowanie_procesora`, `marka_procesora`, `predkosc_pamieci_ram`, `pamiec_ram`, `pamiec_wbudowana`, `pojemnosc_baterii__mah_`, `ladowanie_bezprzewodowe`, `szybkosc_ladowania_przewodowego`, `wymienna_bateria`, `cena`, `sciezka_do_zdjecia`) VALUES
-(4, 'iPhone 13 4/512', '5', '2021', 'Apple', '6.1 Cal', 'Nie', '1170 x 2532 px', '60Hz', 'OLED/AMOLED', 'Nie', 'iOS 16', 'iOS 21', 'Tak', 'Tak', 'Nie', 'Nie', 'USB-c', 'Tak', 'Tak', '5.1', 'Tak', '12 MP &amp; 12 MP', '12Mpx', '4k@60fps', '4k@30fps', '2 x 3.2 GHz &amp; 4 x 2 GHz (Apple A15 Bionic)', 'Apple A15 Bionic', '4000MHz', '4GB', '512GB', '3240 mAh', 'Tak', '20W', 'Nie', '2499zł', 'iPhone13.jpg'),
-(7, 'Google Pixel 7 8/256', '3', '2022', 'google', '6.3Cal', 'Nie', '1080 x 2400 px', '90Hz', 'OLED/AMOLED', 'Nie', 'Android 14', 'Android 21', 'Tak', 'Tak', 'Nie', 'Nie', 'USB-c', 'Tak', 'Tak', '5.2', 'Tak', '50 MP &amp; 12 MP', '10.8MP', '4k@60fps', '4k@30fps', '2 x 2.85 GHz &amp; 2 x 2.35 GHz &amp; 4 x 1.8 GHz (Google Tensor G2)', 'Google Tensor G2', '2800MHz', '8GB', '256GB', '4355 mAh', 'Tak', '30W', 'Nie', '2000zł', 'Pixel7.jpg');
+(4, 'iPhone 13', '5', '2021', 'Apple', '6.1 Cal', 'Nie', '1170 x 2532 px', '60Hz', 'OLED/AMOLED', 'Nie', 'iOS 16', 'iOS 21', 'Tak', 'Tak', 'Nie', 'Nie', 'USB-c', 'Tak', 'Tak', '5.1', 'Tak', '12 MP &amp; 12 MP', '12Mpx', '4k@60fps', '4k@30fps', '2 x 3.2 GHz &amp; 4 x 2 GHz', 'Apple A15 Bionic', '4000MHz', '4GB', '512GB', '3240 mAh', 'Tak', '20W', 'Nie', '2499zł', 'iPhone13.jpg'),
+(7, 'Google Pixel 7', '3', '2022', 'google', '6.3Cal', 'Nie', '1080 x 2400 px', '90Hz', 'OLED/AMOLED', 'Nie', 'Android 14', 'Android 21', 'Tak', 'Tak', 'Nie', 'Nie', 'USB-c', 'Tak', 'Tak', '5.2', 'Tak', '50 MP &amp; 12 MP', '10.8MP', '4k@60fps', '4k@30fps', '2 x 2.85 GHz &amp; 2 x 2.35 GHz &amp; 4 x 1.8 GHz', 'Google Tensor G2', '2800MHz', '8GB', '256GB', '4355 mAh', 'Tak', '30W', 'Nie', '2000zł', 'Pixel7.jpg'),
+(9, 'Honor Magic 6 Pro', '4', '2024', 'honor', '6.8 cal', 'Tak', '1280 x 2800 px', '120Hz', 'OLED/AMOLED', 'nie', 'Android 14', 'android 17', 'tak', 'tak', 'nie', 'nie', 'USB-c', 'tak', 'tak', '5.3', 'tak', '180 MP &amp; 50 MP &amp; 50 MP', '50MP', '4K@60fps', '4K@60fps', '3 x 3.15 GHz &amp; 2 x 2.96 GHz &amp; 2 x 2.26 GHz &amp; 1 x 3.3 GHz', 'Qualcomm Snapdragon 8 Gen 3', '4800 MHz', '16GB', '1000 GB', '5600 mAh', 'tak', '80W', 'nie', '4123zł', 'honor6pro.jpg'),
+(10, 'Samsung Galaxy S24 Ultra', '5', '2024', 'samsung', '6.8 cal', 'Nie', '1440 x 3120 px', '120Hz', 'OLED/AMOLED', 'nie', 'android 14', 'android 20', 'tak', 'tak', 'nie', 'nie', 'USB-c', 'tak', 'tak', '5.3', 'tak', '200 MP &amp; 50 MP &amp; 12 MP &amp; 10 MP', '12MP', '8K@30fps', '4K@60fps', '3 x 3.15 GHz &amp; 2 x 2.96 GHz &amp; 2 x 2.26 GHz &amp; 1 x 3.3 GHz', 'Qualcom Snapdragon 8 Gen 3', '4800 MHz', '12GB', '1000 GB', '5000mAH', 'tak', '45W', 'nie', '4500zł', 's24Ultra.jpg'),
+(11, 'Vivo iQOO Z9 Turbo', '5', '2024', 'Vivo IQOO', '6.78Cal', 'Nie', '1260 x 2800 px', '144Hz', 'OLED/AMOLED', 'nie', 'Android 14', 'android 17', 'tak', 'tak', 'nie', 'nie', 'USB-c', 'tak', 'tak', '5.4', 'nie', '50 MP &amp; 2 MP', '8MP', '4K@60fps', '4K@30fps', '1 x 3 GHz &amp; 4 x 2.8 GHz &amp; 3 x 2 GHz', 'Qualcom Snapdragon 8s Gen 3', '4800Mhz', '16GB', '512GB', '6000mAH', 'nie', '80W', 'nie', '1240zł', 'IQOOz9Turbo.jpg'),
+(12, 'Motorola Moto E13', '2', '2023', 'motorola', '6.5 cal', 'Nie', '720 x 1600 px', '90Hz', 'IPS', 'nie', 'android 13', 'android 14', 'nie', 'tak', 'tak', 'tak', 'USB-c', 'nie', 'nie', '5', 'nie', '13MP', '5MP', 'FullHD@30fps', 'HD@30fps', '8 x 1.6 GHz', 'Unisoc T606', '1600MHz', '8GB', '128GB', '5000mAH', 'nie', '10W', 'nie', '390zł', 'motoE13.jpg'),
+(13, 'Motorola Edge 40 Neo', '5', '2023', 'motorola', '6.55 cal', 'Tak', '1080 x 2400 px', '144Hz', 'OLED/AMOLED', 'nie', 'android 13', 'android 16', 'tak', 'tak', 'nie', 'nie', 'USB-c', 'tak', 'tak', '5.4', 'tak', '50 MP &amp; 13 MP', 'powyżej 32MP', '4K@30fps', 'FullHD@30fps', '2 x 2.5 GHz &amp; 6 x 2 GHz ', 'MediaTek Dimensity 7030', '2750MHz', '12GB', '256GB', '5000mAH', 'nie', '68W', 'nie', '1300zł', 'motoEdge40Neo.jpg'),
+(14, 'Motorola Edge 50 Pro', '2', '2024', 'motorola', '6.7cal', 'Tak', '1220 x 2712 px', '144Hz', 'OLED/AMOLED', 'nie', 'android 14', 'android 17', 'tak', 'tak', 'nie', 'nie', 'USB-c', 'tak', 'tak', '5.4', 'nie', '50 MP &amp; 13 MP &amp; 10 MP', '50MP', '4K@30fps', 'FullHD@30fps', '1 x 2.63 GHz &amp; 3 x 2.4 GHz &amp; 4 x 1.8 GHz', 'Qualcomm Snapdragon 7 Gen 3', '3200MHz', '12GB', '512GB', '4500mAH', 'tak', '125W', 'nie', '2300zł', 'motoEdge50Pro.jpg'),
+(15, 'ZTE Nubia Z60 Ultra', '5', '2023', 'zte/nubia', '6.8 cal', 'Nie', '1116 x 2480 px', '120Hz', 'OLED/AMOLED', 'nie', 'android 14', 'android 16', 'tak', 'tak', 'nie', 'nie', 'USB-c', 'tak', 'tak', '5.3', 'tak', '64 MP &amp; 50 MP &amp; 50 MP', '16MP', '8K@30fps', '4K@60fps', '3 x 3.15 GHz &amp; 2 x 2.96 GHz &amp; 2 x 2.26 GHz &amp; 1 x 3.3 GHz', 'Qualcom Snapdragon 8 Gen 3', '4000GHz', '24GB', '1000 GB', '6000mAH', 'nie', '80W', 'nie', '4500zł', 'nubiaZ60Ultra.jpg'),
+(16, 'Xiaomi Redmi Note 13', '4', '2024', 'xiaomi', '6.67cal', 'Nie', '1080 x 2400 px', '120Hz', 'OLED/AMOLED', 'nie', 'android 14', 'android 15', 'nie', 'tak', 'tak', 'tak', 'USB-c', 'tak', 'tak', '5.3', 'nie', '100 MP &amp; 2 MP', '16MP', 'FullHD@30fps', 'HD@30fps', '2 x 2.4 GHz &amp; 6 x 2 GHz', 'MediaTek Dimensity 6080', '2133MHz', '12GB', '256GB', '5000mAH', 'nie', '33W', 'nie', '700zł', 'RedmiNote13.jpg');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -509,13 +525,13 @@ ALTER TABLE `options`
 -- AUTO_INCREMENT dla tabeli `smartphones`
 --
 ALTER TABLE `smartphones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT dla tabeli `smartphones_parameters`
 --
 ALTER TABLE `smartphones_parameters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -90,6 +90,8 @@ if (isset($_SESSION['can_specific_params']) && $_SESSION['can_specific_params'] 
             if ($connect->query($sql)) {
                 echo "Udało się";
                 $connect->close();
+                $_SESSION['success_DB'] = true;
+                header("Location: smartphonesDB.php");
             } else {
                 echo "Błąd";
             }
@@ -101,244 +103,255 @@ if (isset($_SESSION['can_specific_params']) && $_SESSION['can_specific_params'] 
         <form method="post">
             <label>
                 <input type="text" required="required" name="nazwa" placeholder="nazwa urządzenia" value="<?php
-                                                                                                            if (isset($_SESSION['nazwa'])) {
-                                                                                                                echo $_SESSION['nazwa'];
-                                                                                                            }
-                                                                                                            ?>">
+                if (isset($_SESSION['nazwa'])) {
+                    echo $_SESSION['nazwa'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="ocena użytkowników" name="Ocena_Użytkowników" value="<?php
-                                                                                                                if (isset($_SESSION['Ocena_Użytkowników'])) {
-                                                                                                                    echo $_SESSION['Ocena_Użytkowników'];
-                                                                                                                }
-                                                                                                                ?>">
+                if (isset($_SESSION['Ocena_Użytkowników'])) {
+                    echo $_SESSION['Ocena_Użytkowników'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="rok premiery" name="Rok_Premiery" value="<?php
-                                                                                                    if (isset($_SESSION['Rok_Premiery'])) {
-                                                                                                        echo $_SESSION['Rok_Premiery'];
-                                                                                                    }
-                                                                                                    ?>">
+                if (isset($_SESSION['Rok_Premiery'])) {
+                    echo $_SESSION['Rok_Premiery'];
+                }
+                ?>">
             </label>
             <label>
-                <input required="required" placeholder="marka" name="Marka">
+                <input required="required" placeholder="marka" name="Marka" value="<?php
+                if (isset($_SESSION['Marka'])) {
+                    echo $_SESSION['Marka'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Przekątna ekranu" name="Przekątna_ekranu" value="<?php
-                                                                                                            if (isset($_SESSION['Przekątna_ekranu'])) {
-                                                                                                                echo $_SESSION['Przekątna_ekranu'];
-                                                                                                            }
-                                                                                                            ?>">
+                if (isset($_SESSION['Przekątna_ekranu'])) {
+                    echo $_SESSION['Przekątna_ekranu'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Zagięty ekran" name="Zagięty_ekran" value="<?php
-                                                                                                    if (isset($_SESSION['Zagięty_ekran'])) {
-                                                                                                        echo $_SESSION['Zagięty_ekran'];
-                                                                                                    }
-                                                                                                    ?>">
+                if (isset($_SESSION['Zagięty_ekran'])) {
+                    echo $_SESSION['Zagięty_ekran'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Rozdzielczość Ekranu" name="Rozdzielczość_Ekranu" value="<?php
-                                                                                                                    if (isset($_SESSION['Rozdzielczość_Ekranu'])) {
-                                                                                                                        echo $_SESSION['Rozdzielczość_Ekranu'];
-                                                                                                                    }
-                                                                                                                    ?>">
+                if (isset($_SESSION['Rozdzielczość_Ekranu'])) {
+                    echo $_SESSION['Rozdzielczość_Ekranu'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Odświeżanie Ekranu_Hz" name="Odświeżanie_Ekranu_Hz" value="<?php
-                                                                                                                    if (isset($_SESSION['Odświeżanie_Ekranu_Hz'])) {
-                                                                                                                        echo $_SESSION['Odświeżanie_Ekranu_Hz'];
-                                                                                                                    }
-                                                                                                                    ?>">
+                if (isset($_SESSION['Odświeżanie_Ekranu_Hz'])) {
+                    echo $_SESSION['Odświeżanie_Ekranu_Hz'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Technologia ekranu" name="Technologia_ekranu" value="<?php
-                                                                                                                if (isset($_SESSION['Technologia_ekranu'])) {
-                                                                                                                    echo $_SESSION['Technologia_ekranu'];
-                                                                                                                }
-                                                                                                                ?>">
+                if (isset($_SESSION['Technologia_ekranu'])) {
+                    echo $_SESSION['Technologia_ekranu'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Składany ekran" name="Składany_ekran" value="<?php
-                                                                                                        if (isset($_SESSION['Składany_ekran'])) {
-                                                                                                            echo $_SESSION['Składany_ekran'];
-                                                                                                        }
-                                                                                                        ?>">
+                if (isset($_SESSION['Składany_ekran'])) {
+                    echo $_SESSION['Składany_ekran'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="System Operacyjny" name="System_Operacyjny" value="<?php
-                                                                                                            if (isset($_SESSION['System_Operacyjny'])) {
-                                                                                                                echo $_SESSION['System_Operacyjny'];
-                                                                                                            }
-                                                                                                            ?>">
+                if (isset($_SESSION['System_Operacyjny'])) {
+                    echo $_SESSION['System_Operacyjny'];
+                }
+                ?>">
             </label>
             <label>
-                <input required="required" placeholder="Ostateczny możliwy system operacyjny" name="Ostateczny_możliwy_system_operacyjny" value="<?php
-                                                                                                                                                    if (isset($_SESSION['Ostateczny_możliwy_system_operacyjny'])) {
-                                                                                                                                                        echo $_SESSION['Ostateczny_możliwy_system_operacyjny'];
-                                                                                                                                                    }
-                                                                                                                                                    ?>">
+                <input required="required" placeholder="Ostateczny możliwy system operacyjny"
+                    name="Ostateczny_możliwy_system_operacyjny" value="<?php
+                    if (isset($_SESSION['Ostateczny_możliwy_system_operacyjny'])) {
+                        echo $_SESSION['Ostateczny_możliwy_system_operacyjny'];
+                    }
+                    ?>">
             </label>
             <label>
                 <input required="required" placeholder="Wodoodporność" name="Wodoodporność" value="<?php
-                                                                                                    if (isset($_SESSION['Wodoodporność'])) {
-                                                                                                        echo $_SESSION['Wodoodporność'];
-                                                                                                    }
-                                                                                                    ?>">
+                if (isset($_SESSION['Wodoodporność'])) {
+                    echo $_SESSION['Wodoodporność'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Dual sim" name="Dual_sim" value="<?php
-                                                                                            if (isset($_SESSION['Dual_sim'])) {
-                                                                                                echo $_SESSION['Dual_sim'];
-                                                                                            }
-                                                                                            ?>">
+                if (isset($_SESSION['Dual_sim'])) {
+                    echo $_SESSION['Dual_sim'];
+                }
+                ?>">
             </label>
             <label>
-                <input required="required" placeholder="Jack na słuchawki przewodowe" name="Jack_na_słuchawki_przewodowe" value="<?php
-                                                                                                                                    if (isset($_SESSION['Jack_na_słuchawki_przewodowe'])) {
-                                                                                                                                        echo $_SESSION['Jack_na_słuchawki_przewodowe'];
-                                                                                                                                    }
-                                                                                                                                    ?>">
+                <input required="required" placeholder="Jack na słuchawki przewodowe"
+                    name="Jack_na_słuchawki_przewodowe" value="<?php
+                    if (isset($_SESSION['Jack_na_słuchawki_przewodowe'])) {
+                        echo $_SESSION['Jack_na_słuchawki_przewodowe'];
+                    }
+                    ?>">
             </label>
             <label>
                 <input required="required" placeholder="Slot na kartę SD" name="Slot_na_kartę_SD" value="<?php
-                                                                                                            if (isset($_SESSION['Slot_na_kartę_SD'])) {
-                                                                                                                echo $_SESSION['Slot_na_kartę_SD'];
-                                                                                                            }
-                                                                                                            ?>">
+                if (isset($_SESSION['Slot_na_kartę_SD'])) {
+                    echo $_SESSION['Slot_na_kartę_SD'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Typ złącza USB" name="Typ_złącza_USB" value="<?php
-                                                                                                        if (isset($_SESSION['Typ_złącza_USB'])) {
-                                                                                                            echo $_SESSION['Typ_złącza_USB'];
-                                                                                                        }
-                                                                                                        ?>">
+                if (isset($_SESSION['Typ_złącza_USB'])) {
+                    echo $_SESSION['Typ_złącza_USB'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="5G" name="5G" value="<?php
-                                                                                if (isset($_SESSION['5G'])) {
-                                                                                    echo $_SESSION['5G'];
-                                                                                }
-                                                                                ?>">
+                if (isset($_SESSION['5G'])) {
+                    echo $_SESSION['5G'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="NFC" name="NFC" value="<?php
-                                                                                if (isset($_SESSION['NFC'])) {
-                                                                                    echo $_SESSION['NFC'];
-                                                                                }
-                                                                                ?>">
+                if (isset($_SESSION['NFC'])) {
+                    echo $_SESSION['NFC'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Standard BlueTooth" name="Standard_BlueTooth" value="<?php
-                                                                                                                if (isset($_SESSION['Standard_BlueTooth'])) {
-                                                                                                                    echo $_SESSION['Standard_BlueTooth'];
-                                                                                                                }
-                                                                                                                ?>">
+                if (isset($_SESSION['Standard_BlueTooth'])) {
+                    echo $_SESSION['Standard_BlueTooth'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Bardzo Szybki Internet" name="Bardzo_Szybki_Internet" value="<?php
-                                                                                                                        if (isset($_SESSION['Bardzo_Szybki_Internet'])) {
-                                                                                                                            echo $_SESSION['Bardzo_Szybki_Internet'];
-                                                                                                                        }
-                                                                                                                        ?>">
+                if (isset($_SESSION['Bardzo_Szybki_Internet'])) {
+                    echo $_SESSION['Bardzo_Szybki_Internet'];
+                }
+                ?>">
             </label>
             <label>
-                <input required="required" placeholder="rozdzielczość aparatu tylnego Mpx" name="rozdzielczość_aparatu_tylnego_Mpx" value="<?php
-                                                                                                                                            if (isset($_SESSION['rozdzielczość_aparatu_tylnego_Mpx'])) {
-                                                                                                                                                echo $_SESSION['rozdzielczość_aparatu_tylnego_Mpx'];
-                                                                                                                                            }
-                                                                                                                                            ?>">
+                <input required="required" placeholder="rozdzielczość aparatu tylnego Mpx"
+                    name="rozdzielczość_aparatu_tylnego_Mpx" value="<?php
+                    if (isset($_SESSION['rozdzielczość_aparatu_tylnego_Mpx'])) {
+                        echo $_SESSION['rozdzielczość_aparatu_tylnego_Mpx'];
+                    }
+                    ?>">
             </label>
             <label>
-                <input required="required" placeholder="rozdzielczość aparatu przedniego Mpx" name="rozdzielczość_aparatu_przedniego_Mpx" value="<?php
-                                                                                                                                                    if (isset($_SESSION['rozdzielczość_aparatu_przedniego_Mpx'])) {
-                                                                                                                                                        echo $_SESSION['rozdzielczość_aparatu_przedniego_Mpx'];
-                                                                                                                                                    }
-                                                                                                                                                    ?>">
+                <input required="required" placeholder="rozdzielczość aparatu przedniego Mpx"
+                    name="rozdzielczość_aparatu_przedniego_Mpx" value="<?php
+                    if (isset($_SESSION['rozdzielczość_aparatu_przedniego_Mpx'])) {
+                        echo $_SESSION['rozdzielczość_aparatu_przedniego_Mpx'];
+                    }
+                    ?>">
             </label>
             <label>
-                <input required="required" placeholder="Rozdzielczość nagrywanego_wideo_tył" name="Rozdzielczość_nagrywanego_wideo_tył" value="<?php
-                                                                                                                                                if (isset($_SESSION['Rozdzielczość_nagrywanego_wideo_tył'])) {
-                                                                                                                                                    echo $_SESSION['Rozdzielczość_nagrywanego_wideo_tył'];
-                                                                                                                                                }
-                                                                                                                                                ?>">
+                <input required="required" placeholder="Rozdzielczość nagrywanego_wideo_tył"
+                    name="Rozdzielczość_nagrywanego_wideo_tył" value="<?php
+                    if (isset($_SESSION['Rozdzielczość_nagrywanego_wideo_tył'])) {
+                        echo $_SESSION['Rozdzielczość_nagrywanego_wideo_tył'];
+                    }
+                    ?>">
             </label>
             <label>
-                <input required="required" placeholder="Rozdzielczość nagrywanego_wideo_przód" name="Rozdzielczość_nagrywanego_wideo_przód" value="<?php
-                                                                                                                                                    if (isset($_SESSION['Rozdzielczość_nagrywanego_wideo_przód'])) {
-                                                                                                                                                        echo $_SESSION['Rozdzielczość_nagrywanego_wideo_przód'];
-                                                                                                                                                    }
-                                                                                                                                                    ?>">
+                <input required="required" placeholder="Rozdzielczość nagrywanego_wideo_przód"
+                    name="Rozdzielczość_nagrywanego_wideo_przód" value="<?php
+                    if (isset($_SESSION['Rozdzielczość_nagrywanego_wideo_przód'])) {
+                        echo $_SESSION['Rozdzielczość_nagrywanego_wideo_przód'];
+                    }
+                    ?>">
             </label>
             <label>
                 <input required="required" placeholder="Taktowanie procesora" name="Taktowanie_procesora" value="<?php
-                                                                                                                    if (isset($_SESSION['Taktowanie_procesora'])) {
-                                                                                                                        echo $_SESSION['Taktowanie_procesora'];
-                                                                                                                    }
-                                                                                                                    ?>">
+                if (isset($_SESSION['Taktowanie_procesora'])) {
+                    echo $_SESSION['Taktowanie_procesora'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Marka procesora" name="Marka_procesora" value="<?php
-                                                                                                        if (isset($_SESSION['Marka_procesora'])) {
-                                                                                                            echo $_SESSION['Marka_procesora'];
-                                                                                                        }
-                                                                                                        ?>">
+                if (isset($_SESSION['Marka_procesora'])) {
+                    echo $_SESSION['Marka_procesora'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Prędkość Pamięci RAM" name="Prędkość_Pamięci_RAM" value="<?php
-                                                                                                                    if (isset($_SESSION['Prędkość_Pamięci_RAM'])) {
-                                                                                                                        echo $_SESSION['Prędkość_Pamięci_RAM'];
-                                                                                                                    }
-                                                                                                                    ?>">
+                if (isset($_SESSION['Prędkość_Pamięci_RAM'])) {
+                    echo $_SESSION['Prędkość_Pamięci_RAM'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Pamięć RAM" name="Pamięć_RAM" value="<?php
-                                                                                                if (isset($_SESSION['Pamięć_RAM'])) {
-                                                                                                    echo $_SESSION['Pamięć_RAM'];
-                                                                                                }
-                                                                                                ?>">
+                if (isset($_SESSION['Pamięć_RAM'])) {
+                    echo $_SESSION['Pamięć_RAM'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Pamięć Wbudowana" name="Pamięć_Wbudowana" value="<?php
-                                                                                                            if (isset($_SESSION['Pamięć_Wbudowana'])) {
-                                                                                                                echo $_SESSION['Pamięć_Wbudowana'];
-                                                                                                            }
-                                                                                                            ?>">
+                if (isset($_SESSION['Pamięć_Wbudowana'])) {
+                    echo $_SESSION['Pamięć_Wbudowana'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Pojemność Baterii mAh" name="Pojemność_Baterii_mAh" value="<?php
-                                                                                                                    if (isset($_SESSION['Pojemność_Baterii_mAh'])) {
-                                                                                                                        echo $_SESSION['Pojemność_Baterii_mAh'];
-                                                                                                                    }
-                                                                                                                    ?>">
+                if (isset($_SESSION['Pojemność_Baterii_mAh'])) {
+                    echo $_SESSION['Pojemność_Baterii_mAh'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Ładowanie Bezprzewodowe" name="Ładowanie_Bezprzewodowe" value="<?php
-                                                                                                                        if (isset($_SESSION['Ładowanie_Bezprzewodowe'])) {
-                                                                                                                            echo $_SESSION['Ładowanie_Bezprzewodowe'];
-                                                                                                                        }
-                                                                                                                        ?>">
+                if (isset($_SESSION['Ładowanie_Bezprzewodowe'])) {
+                    echo $_SESSION['Ładowanie_Bezprzewodowe'];
+                }
+                ?>">
             </label>
             <label>
-                <input required="required" placeholder="Szybkość Ładowania Przewodowego" name="Szybkość_Ładowania_Przewodowego" value="<?php
-                                                                                                                                        if (isset($_SESSION['Szybkość_Ładowania_Przewodowego'])) {
-                                                                                                                                            echo $_SESSION['Szybkość_Ładowania_Przewodowego'];
-                                                                                                                                        }
-                                                                                                                                        ?>">
+                <input required="required" placeholder="Szybkość Ładowania Przewodowego"
+                    name="Szybkość_Ładowania_Przewodowego" value="<?php
+                    if (isset($_SESSION['Szybkość_Ładowania_Przewodowego'])) {
+                        echo $_SESSION['Szybkość_Ładowania_Przewodowego'];
+                    }
+                    ?>">
             </label>
             <label>
                 <input required="required" placeholder="Wymienna Bateria" name="Wymienna_Bateria" value="<?php
-                                                                                                            if (isset($_SESSION['Wymienna_Bateria'])) {
-                                                                                                                echo $_SESSION['Wymienna_Bateria'];
-                                                                                                            }
-                                                                                                            ?>">
+                if (isset($_SESSION['Wymienna_Bateria'])) {
+                    echo $_SESSION['Wymienna_Bateria'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Cena" name="Cena" value="<?php
-                                                                                    if (isset($_SESSION['cena'])) {
-                                                                                        echo $_SESSION['cena'];
-                                                                                    }
-                                                                                    ?>">
+                if (isset($_SESSION['cena'])) {
+                    echo $_SESSION['cena'];
+                }
+                ?>">
             </label>
             <label>
                 <input required="required" placeholder="Sciezka Do Zdjecia" name="Sciezka_Do_Zdjecia">

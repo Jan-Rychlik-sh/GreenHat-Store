@@ -42,6 +42,9 @@ session_start();
     <div id="colors-change">Kolory</div>
     <div id="container">
         <?php
+        if (isset($_SESSION['success_DB']) && $_SESSION['success_DB'] == true) {
+            echo "Udało się dodać produkt do bazy";
+        }
         if (isset($_POST["nazwa"]) && trim($_POST['nazwa']) != "") {
             $sql = "INSERT INTO smartphones VALUES
             (NULL, '" .

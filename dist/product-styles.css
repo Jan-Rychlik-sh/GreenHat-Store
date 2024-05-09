@@ -1,0 +1,126 @@
+html body div#container div#next-block #more_info {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--font-color-light);
+  color: var(--font-color-dark2);
+  display: none;
+  overflow-y: scroll;
+}
+html body div#container div#next-block #more_info header {
+  background-color: var(--font-color-light);
+  display: flex;
+  height: 100px;
+  align-items: center;
+  position: sticky;
+  top: 0;
+}
+html body div#container div#next-block #more_info header h1 {
+  width: 90%;
+  text-align: center;
+}
+html body div#container div#next-block #more_info header div#close_more_info {
+  width: 10%;
+  font-size: 50px;
+  font-weight: bold;
+  cursor: pointer;
+}
+html body div#container div#next-block #more_info .product_specific_param {
+  display: flex;
+  width: 100%;
+  font-size: 20px;
+}
+html body div#container div#next-block #more_info .product_specific_param .product_field {
+  width: 100%;
+  text-align: right;
+  padding: 10px;
+}
+html body div#container div#next-block #more_info .product_specific_param .product_field_value {
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+}
+html body div#container div#next-block main#main-content {
+  background-color: white;
+  width: 100%;
+}
+html body div#container div#next-block .top_product_section {
+  margin-bottom: 20px;
+  font-size: 3vw;
+}
+html body div#container div#next-block .top_product_section #star {
+  width: 4vw;
+}
+html body div#container div#next-block .bottom_product_section {
+  width: 100%;
+  display: flex;
+}
+html body div#container div#next-block figure {
+  width: 30%;
+  text-align: center;
+  max-width: 475px;
+  font-size: 20px;
+}
+html body div#container div#next-block figure img {
+  width: 100%;
+}
+html body div#container div#next-block .product_info {
+  min-width: max-content;
+  font-size: 2vw;
+}
+html body div#container div#next-block .product_info .price {
+  margin: 5px;
+  font-size: 30px;
+  color: #488d17;
+}
+html body div#container div#next-block .product_info #link {
+  padding-left: 20px;
+}
+html body div#container div#next-block .product_info #link a {
+  color: var(--font-color-dark2);
+}
+html body div#container div#next-block button.buy {
+  font-size: 30px;
+  margin: 5px;
+  border: 3px solid var(--font-color-light2);
+  background-color: var(--font-color-dark2);
+  border-radius: 10px;
+  padding: 10px;
+  color: var(--font-color-light2);
+  width: 100%;
+  max-width: 200px;
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  animation: filter_animation 1s linear 0s infinite;
+  animation-play-state: running;
+  cursor: pointer;
+}
+html body div#container div#next-block button.buy button.buy:hover {
+  animation-play-state: paused;
+}
+@keyframes filter_animation {
+  0% {
+    filter: brightness(100%);
+  }
+  16.6666666667% {
+    filter: brightness(83.3333333335%);
+  }
+  33.3333333334% {
+    filter: brightness(66.6666666668%);
+  }
+  50% {
+    filter: brightness(50%);
+  }
+  66.6666666668% {
+    filter: brightness(66.6666666668%);
+  }
+  83.3333333335% {
+    filter: brightness(83.3333333335%);
+  }
+  100% {
+    filter: brightness(100%);
+  }
+}

@@ -1,5 +1,7 @@
 <?php
 session_start();
+if (!isset($_SESSION['products_basket']))
+    $_SESSION['products_basket'] = [];
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +15,7 @@ session_start();
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <script async defer src="fix.js"></script>
     <script async defer src="colors-user-change.js"></script>
+    <script async defer src="basket-controller.js"></script>
 </head>
 
 <body id="body">
@@ -46,7 +49,8 @@ session_start();
                 <div id="logo-name">
                     GreenHat Store
                 </div>
-                <span id="logo-description">Witaj na stronie sklepu z telefonami i komputerami, jednym z większych w Polsce.</span>
+                <span id="logo-description">Witaj na stronie sklepu z telefonami i komputerami, jednym z większych w
+                    Polsce.</span>
             </h1>
         </header>
         <div id="next-block">

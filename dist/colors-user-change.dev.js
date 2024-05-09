@@ -12,13 +12,11 @@ document.querySelector("#colors-change").addEventListener("click", function () {
   var values = [];
   captions.forEach(function (caption) {
     filters.push(caption.innerHTML);
-  });
-  console.log(filters); // Zdefiniowanie changeFilter przed jej wywołaniem
+  }); // Zdefiniowanie changeFilter przed jej wywołaniem
 
   var changeFilter = function changeFilter() {
     // Użyj join(' ') do połączenia wszystkich wartości filtrów w jeden ciąg
     var filterValue = values.join(" ");
-    console.log(filterValue);
     document.getElementById("container").style.filter = filterValue;
     localStorage.removeItem("filters_website_color");
     localStorage.setItem("filters_website_color", filterValue);
@@ -36,7 +34,6 @@ document.querySelector("#colors-change").addEventListener("click", function () {
       }
 
       if (filters[index] == "hue-rotate") values.push("".concat(filters[index], "(").concat(input.value, "deg)"));else values.push("".concat(filters[index], "(").concat(input.value, "%)"));
-      console.log(values);
       changeFilter();
     });
   });

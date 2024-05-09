@@ -1,4 +1,4 @@
-// Usuń zaznaczenie checkboxów i wyczyść localStorage po kliknięciu przycisku
+// Usuń zaznaczenie checkboxów i wyczyść localStorage po kliknięciu przycisku oraz wyczyść pudełko z informacją o zaznaczonych opcjach
 document
   .querySelector(".remove_filters")
   .addEventListener("click", function () {
@@ -12,6 +12,7 @@ document
       option.selected = false; //Odznacz opcję
       localStorage.removeItem(option.id); // usuwamy z localStorage
     }
+    document.getElementById("active_filters_description").innerHTML = ""; //Czyścimy pudełko z informacją o zaznaczonych opcjach
   });
 
 // Słuchaj zmiany stanu checkboxów i zapisuj je w localStorage
@@ -19,10 +20,8 @@ let boxes = document.querySelectorAll("input[type='checkbox']");
 for (let box of boxes) {
   box.addEventListener("change", function () {
     localStorage.setItem(box.id, box.checked);
-    console.log("Zapisano stan checkboxa: " + box.id + " = " + box.checked);
   });
 
-  console.log(box.id);
   // Sprawdź, czy istnieje zapis w localStorage i ustaw stan checkboxa zgodnie z nim
   if (localStorage.getItem(box.id) === "true") {
     box.checked = true; // Zaznacz checkbox
@@ -45,19 +44,12 @@ select.addEventListener("change", function () {
   }
   let selectedOption = select.options[select.selectedIndex];
   localStorage.setItem(selectedOption.id, selectedOption.selected);
-  console.log(
-    "Zapisano stan opcji: " +
-      selectedOption.id +
-      " = " +
-      selectedOption.selected
-  );
 });
 
 //Sortowanie elementów strony
 if (document.querySelector("select").value != "Najlepiej oceniane") {
   let mainContent = document.getElementById("main-content");
   let products = mainContent.querySelectorAll(".product");
-  console.log((products = mainContent.querySelectorAll(".product")));
   if (products.length > 0) {
     let productsArray = Array.from(products);
     productsArray.sort((a, b) => {
@@ -144,8 +136,6 @@ function printActiveFilters() {
     detailsWithCheckbox.forEach((checkbox) => {
       let li = document.createElement("li");
       li.innerHTML = checkbox.id.substring(0, checkbox.id.indexOf("-"));
-      console.log(checkbox.id.substring(checkbox.id.indexOf("-") + 1));
-      console.log(fixTextToDatabaseFormat(checkedFiltersTitle.innerText));
       if (
         fixTextToDatabaseFormat(checkedFiltersTitle.innerText) ==
         checkbox.id.substring(checkbox.id.indexOf("-") + 1)
@@ -157,6 +147,21 @@ function printActiveFilters() {
     });
     article.appendChild(section);
   }
-  console.log(titleOfLabelWithCheckedBoxes);
 }
 printActiveFilters();
+
+document.querySelectorAll(".check").forEach((el) => {
+  el.addEventListener("click", function () {
+    let checkboxes = document.querySelectorAll("form input[type='checkbox']");
+    for (let chbx of checkboxes) {
+      chbx.removeAttribute("checked");
+      localStorage.removeItem(chbx.id); // Usuń z localStorage
+    }
+    let options = document.querySelectorAll("option.sort_option");
+    for (let option of options) {
+      option.selected = false; //Odznacz opcję
+      localStorage.removeItem(option.id); // usuwamy z localStorage
+    }
+    document.getElementById("active_filters_description").innerHTML = ""; //Czyścimy pudełko z informacją o zaznaczonych opcjach
+  });
+});

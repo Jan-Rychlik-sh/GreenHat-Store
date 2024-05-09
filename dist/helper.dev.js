@@ -1,6 +1,6 @@
 "use strict";
 
-// Usuń zaznaczenie checkboxów i wyczyść localStorage po kliknięciu przycisku
+// Usuń zaznaczenie checkboxów i wyczyść localStorage po kliknięciu przycisku oraz wyczyść pudełko z informacją o zaznaczonych opcjach
 document.querySelector(".remove_filters").addEventListener("click", function () {
   var checkboxes = document.querySelectorAll("form input[type='checkbox']");
   var _iteratorNormalCompletion = true;
@@ -54,6 +54,8 @@ document.querySelector(".remove_filters").addEventListener("click", function () 
       }
     }
   }
+
+  document.getElementById("active_filters_description").innerHTML = ""; //Czyścimy pudełko z informacją o zaznaczonych opcjach
 }); // Słuchaj zmiany stanu checkboxów i zapisuj je w localStorage
 
 var boxes = document.querySelectorAll("input[type='checkbox']");
@@ -66,9 +68,7 @@ try {
     var box = _step3.value;
     box.addEventListener("change", function () {
       localStorage.setItem(box.id, box.checked);
-      console.log("Zapisano stan checkboxa: " + box.id + " = " + box.checked);
-    });
-    console.log(box.id); // Sprawdź, czy istnieje zapis w localStorage i ustaw stan checkboxa zgodnie z nim
+    }); // Sprawdź, czy istnieje zapis w localStorage i ustaw stan checkboxa zgodnie z nim
 
     if (localStorage.getItem(box.id) === "true") {
       box.checked = true; // Zaznacz checkbox
@@ -151,13 +151,11 @@ select.addEventListener("change", function () {
 
   var selectedOption = select.options[select.selectedIndex];
   localStorage.setItem(selectedOption.id, selectedOption.selected);
-  console.log("Zapisano stan opcji: " + selectedOption.id + " = " + selectedOption.selected);
 }); //Sortowanie elementów strony
 
 if (document.querySelector("select").value != "Najlepiej oceniane") {
   var mainContent = document.getElementById("main-content");
   var products = mainContent.querySelectorAll(".product");
-  console.log(products = mainContent.querySelectorAll(".product"));
 
   if (products.length > 0) {
     var productsArray = Array.from(products);
@@ -237,8 +235,6 @@ function printActiveFilters() {
       detailsWithCheckbox.forEach(function (checkbox) {
         var li = document.createElement("li");
         li.innerHTML = checkbox.id.substring(0, checkbox.id.indexOf("-"));
-        console.log(checkbox.id.substring(checkbox.id.indexOf("-") + 1));
-        console.log(fixTextToDatabaseFormat(checkedFiltersTitle.innerText));
 
         if (fixTextToDatabaseFormat(checkedFiltersTitle.innerText) == checkbox.id.substring(checkbox.id.indexOf("-") + 1)) {
           ul.appendChild(li);
@@ -267,8 +263,64 @@ function printActiveFilters() {
       }
     }
   }
-
-  console.log(titleOfLabelWithCheckedBoxes);
 }
 
 printActiveFilters();
+document.querySelectorAll(".check").forEach(function (el) {
+  el.addEventListener("click", function () {
+    var checkboxes = document.querySelectorAll("form input[type='checkbox']");
+    var _iteratorNormalCompletion7 = true;
+    var _didIteratorError7 = false;
+    var _iteratorError7 = undefined;
+
+    try {
+      for (var _iterator7 = checkboxes[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+        var chbx = _step7.value;
+        chbx.removeAttribute("checked");
+        localStorage.removeItem(chbx.id); // Usuń z localStorage
+      }
+    } catch (err) {
+      _didIteratorError7 = true;
+      _iteratorError7 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion7 && _iterator7["return"] != null) {
+          _iterator7["return"]();
+        }
+      } finally {
+        if (_didIteratorError7) {
+          throw _iteratorError7;
+        }
+      }
+    }
+
+    var options = document.querySelectorAll("option.sort_option");
+    var _iteratorNormalCompletion8 = true;
+    var _didIteratorError8 = false;
+    var _iteratorError8 = undefined;
+
+    try {
+      for (var _iterator8 = options[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+        var option = _step8.value;
+        option.selected = false; //Odznacz opcję
+
+        localStorage.removeItem(option.id); // usuwamy z localStorage
+      }
+    } catch (err) {
+      _didIteratorError8 = true;
+      _iteratorError8 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion8 && _iterator8["return"] != null) {
+          _iterator8["return"]();
+        }
+      } finally {
+        if (_didIteratorError8) {
+          throw _iteratorError8;
+        }
+      }
+    }
+
+    document.getElementById("active_filters_description").innerHTML = ""; //Czyścimy pudełko z informacją o zaznaczonych opcjach
+  });
+});

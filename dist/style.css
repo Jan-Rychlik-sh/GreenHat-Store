@@ -60,9 +60,9 @@ html body #colors-change {
   padding: 5px;
   border-top-right-radius: 60px;
   width: 20vh;
+  left: -3vw;
   height: 120px;
-  top: 10px;
-  left: -55px;
+  top: 0px;
   position: absolute;
   transform: rotate(90deg);
   background-color: var(--font-color-light2);
@@ -99,7 +99,6 @@ html body #colors-change-options #close-colors {
   font-weight: bold;
   font-size: 40px;
   width: 10px;
-  margin-left: px;
   float: right;
   cursor: pointer;
 }
@@ -110,9 +109,111 @@ html body #container {
   justify-content: stretch;
   width: 100%;
   height: 100%;
-  max-width: 1400px;
   margin: auto;
   background-color: var(--font-color-dark);
+}
+html body #container #store_basket {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5px;
+  z-index: 1;
+  opacity: 70%;
+  transition: all 0.3s;
+  cursor: pointer;
+  padding: 5px;
+  border-top-left-radius: 60px;
+  width: 20vh;
+  right: -3vw;
+  height: 120px;
+  top: 0px;
+  position: absolute;
+  transform: rotate(270deg);
+  background-color: var(--font-color-light2);
+  color: var(--font-color-dark);
+  font-size: 25px;
+  font-weight: bold;
+}
+html body #container #store_basket:hover, html body #container #store_basket:focus {
+  background-color: var(--color-green-light);
+  text-shadow: -8px -9px 49px var(--color-green-light2);
+  color: var(--font-color-light2);
+}
+html body #container #store_basket_content {
+  width: 500px;
+  height: 500px;
+  display: none;
+  justify-content: stretch;
+  filter: brightness(100%) invert(0%) hue-rotate(0%) sepia(0%);
+  font-size: 25px;
+  position: absolute;
+  flex-wrap: wrap;
+  z-index: 2;
+  padding: 2px 2px 2px 2px;
+  border-bottom-left-radius: 90px;
+  right: 0;
+  background: linear-gradient(20deg, var(--font-color-light), var(--color-green-light2));
+}
+html body #container #store_basket_content #product_to_buy {
+  overflow-y: scroll;
+  width: 100%;
+  max-height: 300px;
+}
+html body #container #store_basket_content #product_to_buy .OneProductContainer {
+  padding: 5px;
+  border-radius: 20px;
+  border: 4px solid var(--font-color-dark);
+  margin: 5px;
+  display: flex;
+  background-color: white;
+}
+html body #container #store_basket_content #product_to_buy .OneProductContainer img {
+  width: 50%;
+}
+html body #container #store_basket_content #product_to_buy .OneProductContainer .AddedProductDescription {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+html body #container #store_basket_content #product_to_buy .OneProductContainer .AddedProductDescription div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+html body #container #store_basket_content #top-product-section {
+  max-height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+html body #container #store_basket_content #top-product-section #close-basket {
+  height: 100px;
+  color: var(--font-color-dark2);
+  font-weight: bold;
+  width: 10px;
+  float: right;
+  cursor: pointer;
+  padding: 10px;
+  width: 33.33333333%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 200%;
+}
+html body #container #store_basket_content #top-product-section #sum {
+  width: 33.33333333%;
+}
+html body #container #store_basket_content #top-product-section span {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  font-size: 100%;
+  padding: 10px;
+  display: flex;
+  width: 33.33333333%;
 }
 html body #container header#main-site-header {
   height: 25%;
@@ -172,7 +273,7 @@ html body #container #next-block {
   height: 100%;
 }
 html body #container #next-block div#left {
-  width: max-content;
+  width: 30%;
   height: 65%;
   background-color: var(--font-color-light);
 }
@@ -203,14 +304,18 @@ html body #container #next-block div#left nav .sort select option:hover {
   filter: invert(1);
   cursor: pointer;
 }
+html body #container #next-block div#left nav h3 {
+  padding-left: 10px;
+}
 html body #container #next-block div#left nav #active_filters {
   background-color: var(--color-green-light2);
 }
 html body #container #next-block div#left nav #active_filters section.checkedFilterInfo h4 {
+  padding-left: 10px;
   font-size: 30px;
 }
 html body #container #next-block div#left nav #active_filters section.checkedFilterInfo ul li {
-  padding-left: 20px;
+  padding-left: 30px;
 }
 html body #container #next-block div#left nav details {
   text-transform: uppercase;
@@ -384,7 +489,7 @@ html body #container #next-block main#main-content .arrowMenuElement:hover {
 html body #container #next-block main#main-content .product {
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
+  width: 96%;
   margin: 10px auto;
   border-radius: 20px;
   border: 3px solid var(--font-color-dark);
@@ -413,6 +518,7 @@ html body #container #next-block main#main-content .product .bottom_product_sect
 }
 html body #container #next-block main#main-content .product .bottom_product_section figure img {
   width: 100%;
+  max-width: 380px;
 }
 html body #container #next-block main#main-content .product .bottom_product_section .product_info {
   width: 50%;
@@ -427,6 +533,8 @@ html body #container #next-block main#main-content .product .bottom_product_sect
   color: #488d17;
 }
 html body #container #next-block main#main-content .product .bottom_product_section .product_info button.buy {
+  font-size: 30px;
+  margin: 5px;
   border: 3px solid var(--font-color-light2);
   background-color: var(--font-color-dark2);
   border-radius: 10px;
@@ -434,7 +542,6 @@ html body #container #next-block main#main-content .product .bottom_product_sect
   color: var(--font-color-light2);
   width: 100%;
   max-width: 200px;
-  font-size: 20px;
   font-family: "Dancing Script", cursive;
   font-optical-sizing: auto;
   font-style: normal;

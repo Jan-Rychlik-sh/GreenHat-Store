@@ -10,8 +10,8 @@ session_start();
     <title>GHS - <?php echo $_SESSION["category"]; ?></title>
     <link rel="stylesheet" href="dist/style.css">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
-    <script async defer src="helper.js"></script>
     <script async defer src="colors-user-change.js"></script>
+    <script async defer src="helper.js"></script>
 </head>
 
 <body>
@@ -41,8 +41,16 @@ session_start();
     </div>
     <div id="colors-change">Kolory</div>
     <div id="container">
-
-
+        <div id="store_basket_content">
+            <div id="top-product-section">
+                <span id="close-basket">X </span>
+                <div id="sum">0zł</div>
+                <span>Koszyk</span>
+            </div>
+            <div id="product_to_buy">
+            </div>
+        </div>
+        <div id="store_basket">Koszyk</div>
         <header id="main-site-header">
             <h1 id="logo">
                 <a href="index.php">
@@ -66,7 +74,8 @@ session_start();
                             </select>
                         </div>
                         <div id="active_filters">
-                            <h3>Aktywne filtry (aby usunąć filtry kliknij przycisk: Usuń filtry lub odznacz je ręcznie):</h3>
+                            <h3>Aktywne filtry (aby usunąć filtry kliknij przycisk: Usuń filtry lub odznacz je ręcznie):
+                            </h3>
                             <article id="active_filters_description">
                             </article>
                         </div>
@@ -105,8 +114,6 @@ session_start();
 
                             return $text;
                         }
-
-
 
                         $connect = new mysqli("localhost", "root", "", "gh_store");
                         $rezult2 = $connect->query("SELECT name FROM filters WHERE forWhichProduct='" . $_SESSION["category"] . "';");
@@ -151,6 +158,7 @@ session_start();
                 </nav>
             </div>
             <main id="main-content">
+                <div>Kliknij przycisk "POKAŻ", aby zobaczyć oferty!</div>;
                 <?php
                 // Inicjalizacja zapytania SQL
                 $sql = "SELECT * FROM smartphones";
@@ -160,6 +168,8 @@ session_start();
 
                 // Iteracja po polach formularza POST
                 foreach ($_POST as $fieldName => $value) {
+                    // Zamień podłogi lub spacje między dwoma cyframi na kropki
+                    $fieldName = preg_replace('/(?<=\d)[ _](?=\d)/', '.', $fieldName);
                     // Podziel nazwę pola formularza na nazwę opcji i filtru
                     $parts = explode("-", $fieldName);
 
@@ -176,6 +186,8 @@ session_start();
                     }
                 }
 
+
+
                 // Sprawdzenie, czy są wybrane filtry i opcje
                 if (!empty($filtersAndOptions)) {
                     // Dodanie warunków WHERE dla każdego filtra i odpowiadających mu opcji
@@ -188,7 +200,7 @@ session_start();
                         $optionsString = "'" . implode("', '", $options) . "'";
                         $optionsString = str_replace("_", " ", $optionsString);
                         // Dodanie warunku WHERE dla danego filtra
-                        $whereConditions[] = "$filterName IN ($optionsString)";
+                        $whereConditions[] = "`$filterName` IN ($optionsString)";
                     }
                     // Połączenie warunków WHERE za pomocą operatora logicznego AND
                     $whereClause = implode(" AND ", $whereConditions);
@@ -219,22 +231,25 @@ session_start();
 
                 $connect = new mysqli("localhost", "root", "", "gh_store");
                 $rezult4 = $connect->query($sql);
+                $i = 0;
                 while ($row = $rezult4->fetch_assoc()) {
                     $row2Result = $connect->query("SELECT * FROM smartphones_parameters WHERE name='" . $row['name'] . "';");
                     $row2 = $row2Result->fetch_assoc();
-                    echo '<div class="product">
+                    echo '<form class="product" method="post" action="product.php">
                     <div class="top_product_section">
                         <h2>
-                            <div class="product_title">' . $row2['name'] . ' ' . $row2['pamiec_ram'] . '/' . $row2['pamiec_wbudowana'] . '&nbsp;&nbsp;<span class="product_rating">' . $row2['ocena_uzytkownikow'] . ' <img src="img/storeProducts/star.png" width="25" alt="gwiazdek"></span>
+                            <div class="product_title" id="' . $i . 'product">' . $row2['name'] . ' ' . $row2['pamiec_ram'] . '/' . $row2['pamiec_wbudowana'] . '&nbsp;&nbsp;<span class="product_rating">' . $row2['ocena_uzytkownikow'] . ' <img src="img/storeProducts/star.png" width="25" alt="gwiazdek"></span>
                             </div>
                         </h2>
                     </div>
                     <div class="bottom_product_section">
                         <figure id="product_image">
-                            <img src="img/storeProducts/smartphones/' . $row2['sciezka_do_zdjecia'] . '" alt="' . $row['name'] . '">
+                            <img id="' . $i . 'img_product_image" src="img/storeProducts/smartphones/' . $row2['sciezka_do_zdjecia'] . '" alt="' . $row['name'] . '">
                             <figcaption>' . $row['marka'] . '</figcaption>
                         </figure>
                         <div class="product_info">
+                        <div class="product_param">
+                            Przekątna ekranu: ' . $row2['pamiec_wbudowana'] . '</div>
                             <div class="product_param">
                                 Pamięć wewnętrzna: ' . $row2['pamiec_wbudowana'] . '</div>
                             <div class="product_param">
@@ -249,22 +264,25 @@ session_start();
                                 Rozdzielczość nagrywanego wideo tył: ' . $row2['rozdzielczosc_nagrywanego_wideo_tyl'] . '</div>
                             <div class="product_param">
                                 System Operacyjny: ' . $row2['system_operacyjny'] . ' - ostateczna możliwa wersja: ' . $row2['ostateczny_mozliwy_system_operacyjny'] . '</div>
-                            <div class="price">' . $row2['cena'] . '</div>
-                            <button class="buy">Kup</button>
+                            <div class="price" id="' . $i . 'price">' . $row2['cena'] . '</div>
+                            <input name="phone_name" style="display: none;" value="' . $row2["name"] . '"/>' .
+                        '<button type="button" class="buy buy_button" id="' . $i . 'buy_button">Do Koszyka</button><button class="buy check" type="submit">Sprawdź</button>
                         </div>
                     </div>
-                </div>';
+                </form>';
+                    $i++;
                 }
                 $connect->close();
 
                 // Wyświetlenie zbudowanego zapytania SQL
-                echo "<div>Kliknij przycisk \"POKAŻ\", aby zobaczyć oferty!</div>";
-
+                
                 ?>
 
             </main>
         </div>
     </div>
+    <script src="basket-controller.js"></script>
+
 </body>
 
 </html>

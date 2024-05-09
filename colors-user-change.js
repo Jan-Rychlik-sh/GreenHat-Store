@@ -19,13 +19,11 @@ document.querySelector("#colors-change").addEventListener("click", function () {
   captions.forEach(function (caption) {
     filters.push(caption.innerHTML);
   });
-  console.log(filters);
 
   // Zdefiniowanie changeFilter przed jej wywołaniem
   let changeFilter = () => {
     // Użyj join(' ') do połączenia wszystkich wartości filtrów w jeden ciąg
     let filterValue = values.join(" ");
-    console.log(filterValue);
     document.getElementById("container").style.filter = filterValue;
     localStorage.removeItem("filters_website_color");
     localStorage.setItem("filters_website_color", filterValue);
@@ -47,7 +45,6 @@ document.querySelector("#colors-change").addEventListener("click", function () {
       if (filters[index] == "hue-rotate")
         values.push(`${filters[index]}(${input.value}deg)`);
       else values.push(`${filters[index]}(${input.value}%)`);
-      console.log(values);
       changeFilter();
     });
   });
